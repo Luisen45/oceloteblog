@@ -6,9 +6,9 @@ body {
   margin: 0;
 }
 
-/* 
-   Cada sección tendrá su propio fondo 
-   usando background-attachment: fixed 
+/*
+   Cada sección tendrá su propio fondo
+   usando background-attachment: fixed
    para un efecto "parallax" sencillo
 */
 section {
@@ -19,8 +19,7 @@ section {
   background-attachment: fixed;
   padding: 100px 20px;
   margin-top: 60px; /* Evitar que el contenido quede debajo del nav */
-  /* Fondo semitransparente para el contenido */
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
 }
 
 /* --------------------
@@ -214,7 +213,7 @@ video {
 }
 
 .clear {
-  grid-column: span 4; /* Ocupa el ancho completo de la cuadrícula */
+  grid-column: span 4; /* Ocupa el ancho completo */
   background-color: #f44336;
 }
 
