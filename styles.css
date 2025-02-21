@@ -15,6 +15,7 @@ section {
   min-height: 100vh; /* Cada sección ocupa toda la altura de la ventana */
   background-size: cover;
   background-repeat: no-repeat;
+  background-position: center; /* Centra la imagen de fondo */
   background-attachment: fixed;
   padding: 100px 20px;
   margin-top: 60px; /* Evitar que el contenido quede debajo del nav */
@@ -46,7 +47,7 @@ section {
 }
 
 /* --------------------
-   Navegación fija
+   Navegación fija con menú hamburguesa
 --------------------- */
 nav {
   background-color: rgba(0, 0, 0, 0.7);
@@ -54,10 +55,41 @@ nav {
   position: fixed;
   width: 100%;
   top: 0;
-  z-index: 999; /* Asegura que el nav quede por encima de todo */
+  z-index: 999;
 }
 
-nav ul {
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.brand a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+}
+
+/* Icono hamburguesa */
+.menu-toggle {
+  display: none;
+  cursor: pointer;
+}
+
+.menu-toggle .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: #fff;
+}
+
+/* Lista de enlaces */
+.nav-menu {
   list-style: none;
   display: flex;
   justify-content: center;
@@ -65,20 +97,33 @@ nav ul {
   padding: 0;
 }
 
-nav ul li {
+.nav-menu li {
   margin: 0 15px;
 }
 
-nav ul li a {
+.nav-menu li a {
   color: #fff;
   text-decoration: none;
   font-weight: bold;
   transition: color 0.3s ease;
 }
 
-nav ul li a:hover {
+.nav-menu li a:hover {
   text-decoration: underline;
   color: #ffcc00;
+}
+
+/* Animación para la X del menú cuando está activo */
+.menu-toggle.is-active .bar:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle.is-active .bar:nth-child(1) {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.menu-toggle.is-active .bar:nth-child(3) {
+  transform: translateY(-8px) rotate(-45deg);
 }
 
 /* --------------------
@@ -221,12 +266,31 @@ form button:hover {
    Responsividad
 --------------------- */
 @media (max-width: 768px) {
-  nav ul {
-    flex-direction: column;
+  .menu-toggle {
+    display: block;
   }
 
-  nav ul li {
-    margin: 10px 0;
+  /* Menú inicialmente oculto en mobile */
+  .nav-menu {
+    position: absolute;
+    top: 60px;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.9);
+    width: 100%;
+    max-height: 0;
+    overflow: hidden;
+    flex-direction: column;
+    align-items: center;
+    transition: max-height 0.3s ease-in-out;
+  }
+
+  /* Cuando se active el menú, se despliega */
+  .nav-menu.active {
+    max-height: 300px;
+  }
+
+  .nav-menu li {
+    margin: 15px 0;
   }
 
   section {
