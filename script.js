@@ -20,7 +20,7 @@ flashcards.forEach(card => {
 /* -------------------------------------------------------
    Lógica para la Calculadora:
    - appendValue(value): Agrega dígitos u operadores al display
-   - calculate(): Evalúa la expresión con eval (simple)
+   - calculate(): Evalúa la expresión
    - clearDisplay(): Limpia el display
 -------------------------------------------------------- */
 const display = document.getElementById('display');
