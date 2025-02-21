@@ -45,7 +45,7 @@ function clearDisplay() {
    Smooth Scrolling (opcional):
    - Permite un desplazamiento suave al hacer clic en los enlaces del menú
 -------------------------------------------------------- */
-const navLinks = document.querySelectorAll('nav ul li a');
+const navLinks = document.querySelectorAll('.nav-menu li a');
 navLinks.forEach(link => {
   link.addEventListener('click', event => {
     event.preventDefault();
@@ -58,5 +58,20 @@ navLinks.forEach(link => {
         behavior: 'smooth'
       });
     }
+
+    // Cierra el menú al hacer clic en un enlace (en mobile)
+    mobileMenu.classList.remove('is-active');
+    navMenu.classList.remove('active');
   });
+});
+
+/* -------------------------------------------------------
+   Toggle menú hamburguesa en dispositivos móviles
+-------------------------------------------------------- */
+const mobileMenu = document.getElementById('mobile-menu');
+const navMenu = document.querySelector('.nav-menu');
+
+mobileMenu.addEventListener('click', () => {
+  mobileMenu.classList.toggle('is-active');
+  navMenu.classList.toggle('active');
 });
