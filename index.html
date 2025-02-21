@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ocelote Comunidad</title>
+  <!-- Enlazamos nuestro archivo de estilos -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Menú de navegación fijo -->
+  <nav>
+    <ul>
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#flashcards">Flashcards</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
+      <li><a href="#concursos">Concursos</a></li>
+    </ul>
+  </nav>
+
+  <!-- Sección de Inicio -->
+  <section id="inicio">
+    <h2>Bienvenido a Ocelote Comunidad</h2>
+    <p>¡Descubre todo lo que tenemos para ti!</p>
+  </section>
+
+  <!-- Sección de Videos -->
+  <section id="videos">
+    <h2>Videos</h2>
+    <div class="video-container">
+      <!-- Ejemplo de iframe de YouTube -->
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/VIDEO_ID_1" 
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+    </div>
+    <div class="video-container">
+      <!-- Puedes añadir más iframes o videos locales -->
+      <iframe 
+        width="560" 
+        height="315" 
+        src="https://www.youtube.com/embed/VIDEO_ID_2" 
+        frameborder="0" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Sección de Flashcards -->
+  <section id="flashcards">
+    <h2>Flashcards</h2>
+    <!-- Ejemplo de tarjetas: pregunta y respuesta -->
+    <div class="flashcard">
+      <div class="question">¿Cuál es la capital de Francia?</div>
+      <div class="answer">París</div>
+    </div>
+    <div class="flashcard">
+      <div class="question">¿Cuál es la fórmula del agua?</div>
+      <div class="answer">H<sub>2</sub>O</div>
+    </div>
+    <div class="flashcard">
+      <div class="question">¿Quién pintó la Mona Lisa?</div>
+      <div class="answer">Leonardo da Vinci</div>
+    </div>
+  </section>
+
+  <!-- Sección de Calculadora -->
+  <section id="calculadora">
+    <h2>Calculadora</h2>
+    <div class="calc-container">
+      <input type="text" id="display" disabled />
+      <div class="calc-buttons">
+        <button class="btn" onclick="appendValue('7')">7</button>
+        <button class="btn" onclick="appendValue('8')">8</button>
+        <button class="btn" onclick="appendValue('9')">9</button>
+        <button class="btn" onclick="appendValue('/')">/</button>
+
+        <button class="btn" onclick="appendValue('4')">4</button>
+        <button class="btn" onclick="appendValue('5')">5</button>
+        <button class="btn" onclick="appendValue('6')">6</button>
+        <button class="btn" onclick="appendValue('*')">*</button>
+
+        <button class="btn" onclick="appendValue('1')">1</button>
+        <button class="btn" onclick="appendValue('2')">2</button>
+        <button class="btn" onclick="appendValue('3')">3</button>
+        <button class="btn" onclick="appendValue('-')">-</button>
+
+        <button class="btn" onclick="appendValue('0')">0</button>
+        <button class="btn" onclick="appendValue('.')">.</button>
+        <button class="btn" onclick="calculate()">=</button>
+        <button class="btn" onclick="appendValue('+')">+</button>
+
+        <button class="btn clear" onclick="clearDisplay()">C</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección de Concursos -->
+  <section id="concursos">
+    <h2>Concursos</h2>
+    <p>Participa en nuestros concursos y gana premios increíbles. ¡Inscríbete ahora!</p>
+    <form>
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required />
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" required />
+
+      <label for="concurso">Elige un concurso:</label>
+      <select id="concurso">
+        <option value="concurso1">Concurso 1</option>
+        <option value="concurso2">Concurso 2</option>
+        <option value="concurso3">Concurso 3</option>
+      </select>
+
+      <button type="submit">Inscribirse</button>
+    </form>
+  </section>
+
+  <!-- Enlazamos el archivo de JavaScript al final del body -->
+  <script src="script.js"></script>
+</body>
+</html>
