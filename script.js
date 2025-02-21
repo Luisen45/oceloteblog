@@ -43,7 +43,7 @@ function clearDisplay() {
 
 /* -------------------------------------------------------
    Smooth Scrolling (opcional):
-   - Permite un desplazamiento suave al hacer clic en los enlaces del menú
+   - Desplazamiento suave al hacer clic en los enlaces del menú
 -------------------------------------------------------- */
 const navLinks = document.querySelectorAll('.nav-menu li a');
 navLinks.forEach(link => {
