@@ -1,135 +1,157 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ocelote Comunidad</title>
-  <!-- Vinculamos la hoja de estilo -->
-  <link rel="stylesheet" href="estilos.css">
+
+  <!-- SEO básico -->
+  <meta name="description" content="Recursos para QFB: videos, flashcards, calculadoras y avisos." />
+  <link rel="canonical" href="https://luisen45.github.io/OceloteBlog.io/" />
+
+  <!-- Open Graph -->
+  <meta property="og:title" content="Ocelote Comunidad" />
+  <meta property="og:description" content="Recursos para QFB: videos, flashcards y más." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://luisen45.github.io/OceloteBlog.io/" />
+
+  <!-- Fuente opcional -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
+  <!-- IMPORTANTE: nombre correcto -->
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
-
-  <!-- Menú de navegación fijo con toggle -->
-  <nav>
-    <div class="nav-container">
-      <div class="brand">
-        <a href="#inicio">Ocelote Comunidad</a>
-      </div>
-      <div class="menu-toggle" id="mobile-menu">
-        <span class="bar"></span>
-        <span class="bar"></span>
-        <span class="bar"></span>
-      </div>
-      <ul class="nav-menu">
-        <li><a href="#inicio">Inicio</a></li>
-        <li><a href="#videos">Videos</a></li>
-        <li><a href="#flashcards">Flashcards</a></li>
-        <li><a href="#calculadora">Calculadora</a></li>
-        <li><a href="#concursos">Concursos</a></li>
-      </ul>
-    </div>
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="#inicio" aria-label="Ir a Inicio">
+      <span class="brand-mark">🟡</span> Ocelote Comunidad
+    </a>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu" aria-label="Abrir menú">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#videos">Videos</a></li>
+      <li><a href="#flashcards">Flashcards</a></li>
+      <li><a href="#calculadora">Calculadora</a></li>
+      <li><a href="#concursos">Concursos</a></li>
+    </ul>
   </nav>
 
-  <!-- Sección de Inicio -->
-  <section id="inicio">
-    <h2>Bienvenido a Ocelote Comunidad</h2>
-    <p>¡Descubre todo lo que tenemos para ti!</p>
-  </section>
-
-  <!-- Sección de Videos -->
-  <section id="videos">
-    <h2>Videos</h2>
-    <div class="video-container">
-      <!-- Ejemplo de iframe de YouTube -->
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/VIDEO_ID_1"
-        allowfullscreen>
-      </iframe>
-    </div>
-    <div class="video-container">
-      <!-- Agrega más videos o iframes si deseas -->
-      <iframe
-        width="560"
-        height="315"
-        src="https://www.youtube.com/embed/VIDEO_ID_2"
-        allowfullscreen>
-      </iframe>
+  <section id="inicio" class="hero">
+    <div class="container">
+      <h1>Recursos para QFB con estilo</h1>
+      <p>Apoya tus clases con videos, tarjetas de estudio, herramientas y convocatorias.</p>
+      <div class="actions">
+        <a class="btn primary" href="#videos">Ver videos</a>
+        <a class="btn ghost" href="#flashcards">Practicar</a>
+      </div>
     </div>
   </section>
+</header>
 
-  <!-- Sección de Flashcards -->
-  <section id="flashcards">
-    <h2>Flashcards</h2>
-    <div class="flashcard">
-      <div class="question">¿Cuál es la capital de Francia?</div>
-      <div class="answer">París</div>
-    </div>
-    <div class="flashcard">
-      <div class="question">¿Cuál es la fórmula del agua?</div>
-      <div class="answer">H₂O</div>
-    </div>
-    <div class="flashcard">
-      <div class="question">¿Quién pintó la Mona Lisa?</div>
-      <div class="answer">Leonardo da Vinci</div>
+<main>
+  <!-- Sección: Destacados -->
+  <section class="features">
+    <div class="container grid-3">
+      <article class="card">
+        <h3>Videos</h3>
+        <p>Clases y explicaciones clave seleccionadas para tu semestre.</p>
+        <a class="link" href="#videos">Ir a Videos →</a>
+      </article>
+      <article class="card">
+        <h3>Flashcards</h3>
+        <p>Repasa definiciones y fórmulas con tarjetas interactivas.</p>
+        <a class="link" href="#flashcards">Abrir Flashcards →</a>
+      </article>
+      <article class="card">
+        <h3>Herramientas</h3>
+        <p>Calculadora rápida para operaciones y validaciones sencillas.</p>
+        <a class="link" href="#calculadora">Usar Calculadora →</a>
+      </article>
     </div>
   </section>
 
-  <!-- Sección de Calculadora -->
-  <section id="calculadora">
-    <h2>Calculadora</h2>
-    <div class="calc-container">
-      <input type="text" id="display" disabled>
-      <div class="calc-buttons">
-        <button class="btn" onclick="appendValue('7')">7</button>
-        <button class="btn" onclick="appendValue('8')">8</button>
-        <button class="btn" onclick="appendValue('9')">9</button>
-        <button class="btn" onclick="appendValue('/')">/</button>
-
-        <button class="btn" onclick="appendValue('4')">4</button>
-        <button class="btn" onclick="appendValue('5')">5</button>
-        <button class="btn" onclick="appendValue('6')">6</button>
-        <button class="btn" onclick="appendValue('*')">*</button>
-
-        <button class="btn" onclick="appendValue('1')">1</button>
-        <button class="btn" onclick="appendValue('2')">2</button>
-        <button class="btn" onclick="appendValue('3')">3</button>
-        <button class="btn" onclick="appendValue('-')">-</button>
-
-        <button class="btn" onclick="appendValue('0')">0</button>
-        <button class="btn" onclick="appendValue('.')">.</button>
-        <button class="btn" onclick="calculate()">=</button>
-        <button class="btn" onclick="appendValue('+')">+</button>
-
-        <button class="btn clear" onclick="clearDisplay()">C</button>
+  <!-- Sección: Videos -->
+  <section id="videos" class="section">
+    <div class="container">
+      <h2>Videos</h2>
+      <div class="video-grid">
+        <iframe title="Video 1" src="https://www.youtube.com/embed/VIDEO_ID_1" loading="lazy" allowfullscreen></iframe>
+        <iframe title="Video 2" src="https://www.youtube.com/embed/VIDEO_ID_2" loading="lazy" allowfullscreen></iframe>
+        <!-- Agrega más iframes si lo necesitas -->
       </div>
     </div>
   </section>
 
-  <!-- Sección de Concursos -->
-  <section id="concursos">
-    <h2>Concursos</h2>
-    <p>Participa en nuestros concursos y gana premios increíbles. ¡Inscríbete ahora!</p>
-    <form>
-      <label for="nombre">Nombre:</label>
-      <input type="text" id="nombre" required>
-
-      <label for="email">Email:</label>
-      <input type="email" id="email" required>
-
-      <label for="concurso">Elige un concurso:</label>
-      <select id="concurso">
-        <option value="concurso1">Concurso 1</option>
-        <option value="concurso2">Concurso 2</option>
-        <option value="concurso3">Concurso 3</option>
-      </select>
-
-      <button type="submit">Inscribirse</button>
-    </form>
+  <!-- Sección: Flashcards -->
+  <section id="flashcards" class="section">
+    <div class="container">
+      <h2>Flashcards</h2>
+      <div class="flashcards">
+        <div class="flashcard" tabindex="0" aria-expanded="false">
+          <div class="question">¿Cuál es la capital de Francia?</div>
+          <div class="answer">París</div>
+        </div>
+        <div class="flashcard" tabindex="0" aria-expanded="false">
+          <div class="question">¿Fórmula del agua?</div>
+          <div class="answer">H₂O</div>
+        </div>
+        <div class="flashcard" tabindex="0" aria-expanded="false">
+          <div class="question">¿Quién pintó la Mona Lisa?</div>
+          <div class="answer">Leonardo da Vinci</div>
+        </div>
+      </div>
+    </div>
   </section>
 
-  <!-- Vinculamos el archivo de JavaScript al final del body -->
-  <script src="script.js"></script>
+  <!-- Sección: Calculadora -->
+  <section id="calculadora" class="section">
+    <div class="container">
+      <h2>Calculadora</h2>
+      <div class="calc">
+        <input type="text" id="display" inputmode="decimal" aria-label="Pantalla de cálculo" />
+        <div class="keys">
+          <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="/">/</button>
+          <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="*">*</button>
+          <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="-">-</button>
+          <button data-k="0">0</button><button data-k=".">.</button><button id="eq">=</button><button data-k="+">+</button>
+          <button id="clear" class="full">C</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Sección: Concursos -->
+  <section id="concursos" class="section">
+    <div class="container">
+      <h2>Concursos</h2>
+      <p>Participa y gana. Te avisamos por correo si resultas seleccionado.</p>
+      <form id="contestForm" novalidate>
+        <label for="nombre">Nombre</label>
+        <input id="nombre" name="nombre" required />
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" required />
+        <label for="concurso">Elige un concurso</label>
+        <select id="concurso" name="concurso">
+          <option value="concurso1">Concurso 1</option>
+          <option value="concurso2">Concurso 2</option>
+          <option value="concurso3">Concurso 3</option>
+        </select>
+        <button class="btn primary" type="submit">Inscribirse</button>
+        <p id="formMsg" class="form-msg" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> Ocelote Comunidad — FES Zaragoza</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
 </body>
 </html>
