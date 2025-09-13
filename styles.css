@@ -1,7 +1,7 @@
 :root{
   --bg:#0a2540;         /* azul profundo */
   --fg:#f4f7fb;
-  --muted:#96a0b5;
+  --muted:#b7c1d6;
   --brand:#6c5ce7;      /* morado */
   --accent:#ff8c00;     /* naranja */
   --warn:#ffd54f;       /* amarillo */
@@ -15,10 +15,10 @@ body{
   margin:0;
   font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
   color:var(--fg);
-  background:linear-gradient(180deg,#081a2e, #0a2540 40%, #061628);
+  background:#0a2540;
 }
 
-/* -------- Nav -------- */
+/* ---------- NAV ---------- */
 .site-header{position:relative}
 .nav{
   position:sticky; top:0; z-index:1000;
@@ -39,11 +39,17 @@ body{
 .nav-menu a{color:#fff; text-decoration:none; font-weight:500}
 .nav-menu a:hover{color:var(--warn)}
 
-/* -------- Hero -------- */
+/* ---------- HERO ---------- */
 .hero{
-  background: radial-gradient(60% 60% at 20% 20%, rgba(108,92,231,.35), transparent 60%),
-              radial-gradient(60% 60% at 80% 0%, rgba(255,140,0,.25), transparent 60%);
+  position:relative;
   padding:5rem 0 3rem;
+  min-height:45vh;
+  display:flex; align-items:center;
+}
+.hero .overlay{
+  position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+  pointer-events:none;
 }
 .container{max-width:1100px; margin:0 auto; padding:0 1rem}
 .hero h1{font-size: clamp(1.8rem, 2.8vw, 3rem); margin:0 0 .5rem}
@@ -58,7 +64,7 @@ body{
 .btn.ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.25)}
 .btn:hover{transform:translateY(-1px)}
 
-/* -------- Features -------- */
+/* ---------- FEATURES ---------- */
 .features{padding:2.5rem 0}
 .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
 .card{
@@ -71,13 +77,11 @@ body{
 .card p{color:var(--muted); margin:0 0 .75rem}
 .card .link{color:var(--warn); text-decoration:none; font-weight:600}
 
-/* -------- Secciones -------- */
+/* ---------- SECCIONES ---------- */
 .section{padding:2.5rem 0}
 
 /* Videos */
-.video-grid{
-  display:grid; grid-template-columns:repeat(2,1fr); gap:1rem
-}
+.video-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
 .video-grid iframe{
   width:100%; aspect-ratio:16/9; border:0; border-radius:14px;
   box-shadow:0 10px 24px rgba(0,0,0,.25);
@@ -123,7 +127,23 @@ input, select{
 /* Footer */
 .site-footer{padding:2rem 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted);}
 
-/* ------ Responsive ------ */
+/* ---------- BACKGROUNDS POR PÁGINA ---------- */
+/* Fondo para la página principal */
+body.index{
+  background-image: url('https://i.imgur.com/cJfEzID.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+/* Fondo para la página "wconociendoamisprofes" */
+body.wconociendoamisprofes{
+  background-image: url('https://i.imgur.com/xe5PqnU.jpg');
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+/* ---------- RESPONSIVE ---------- */
 @media (max-width: 960px){
   .grid-3{grid-template-columns:1fr}
   .video-grid{grid-template-columns:1fr}
