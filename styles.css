@@ -169,9 +169,13 @@ body.app{
   background-image: url('https://i.imgur.com/y1g7o9x.jpg'); /* cambia si deseas */
   background-size: cover; background-position: center; background-attachment: fixed;
 }
+
+/* --- JUEGO: Fondo desktop (PC) por defecto --- */
 body.juego{
-  background-image: url('https://i.imgur.com/0cRr0cL.jpg'); /* cambia si deseas */
-  background-size: cover; background-position: center; background-attachment: fixed;
+  background-image: url('https://i.imgur.com/ulaCykE.jpg'); /* imagen escritorio */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -189,4 +193,12 @@ body.juego{
   .nav-menu.show{display:flex}
 
   .add-card{grid-template-columns:1fr; align-items:stretch}
+}
+
+/* --- JUEGO: Fondo para móviles (vertical/angosto) --- */
+@media (max-width: 960px), (orientation: portrait){
+  body.juego{
+    background-image: url('https://i.imgur.com/GracwSj.jpg'); /* imagen móvil */
+    background-attachment: scroll; /* más fluido en móvil */
+  }
 }
