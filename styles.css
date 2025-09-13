@@ -17,6 +17,8 @@ body{
   color:var(--fg);
   background:#0a2540;
 }
+.muted{color:var(--muted)}
+.small{font-size:.9rem}
 
 /* ---------- NAV ---------- */
 .site-header{position:relative}
@@ -28,16 +30,13 @@ body{
 }
 .brand{color:#fff; text-decoration:none; font-weight:700; letter-spacing:.2px}
 .brand .brand-mark{margin-right:.35rem}
-
-.nav-toggle{
-  display:none; width:42px; height:42px; border:1px solid rgba(255,255,255,.15);
-  background:transparent; border-radius:10px; cursor:pointer;
-}
-.nav-toggle span{display:block; height:2px; background:#fff; margin:8px 9px}
-
 .nav-menu{list-style:none; display:flex; gap:18px; margin:0; padding:0}
 .nav-menu a{color:#fff; text-decoration:none; font-weight:500}
+.nav-menu a[aria-current="page"]{color:var(--warn)}
 .nav-menu a:hover{color:var(--warn)}
+.nav-toggle{display:none; width:42px; height:42px; border:1px solid rgba(255,255,255,.15);
+  background:transparent; border-radius:10px; cursor:pointer;}
+.nav-toggle span{display:block; height:2px; background:#fff; margin:8px 9px}
 
 /* ---------- HERO ---------- */
 .hero{
@@ -87,7 +86,7 @@ body{
   box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-/* Flashcards */
+/* Flashcards simples (index) */
 .flashcards{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
 .flashcard{
   background:#0b2a4d; border:1px solid rgba(255,255,255,.08);
@@ -98,7 +97,7 @@ body{
 .flashcard .question{font-weight:700}
 .flashcard .answer{display:none; color:#d6def0; margin-top:.5rem}
 
-/* Calculadora */
+/* Calculadora (index) */
 .calc{
   max-width:360px; margin-inline:auto; background:#0b2a4d;
   border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem;
@@ -124,23 +123,55 @@ input, select{
 }
 .form-msg{margin-top:.5rem; color:var(--warn)}
 
-/* Footer */
-.site-footer{padding:2rem 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted);}
+/* ---------- App de Estudio ---------- */
+.study-app{margin-top:1rem}
+.add-card{display:grid; grid-template-columns:1fr 1fr auto auto; gap:.75rem; align-items:end}
+.add-card input{height:42px}
+.cards-list{margin-top:1rem; display:grid; gap:.5rem}
+.card-row{
+  display:flex; justify-content:space-between; align-items:center;
+  background:#0b2a4d; border:1px solid rgba(255,255,255,.08);
+  border-radius:12px; padding:.6rem .8rem;
+}
+.card-row .qa{max-width:75%}
+.card-row .qa .q{font-weight:700}
+.card-row .qa .a{color:#d6def0}
+.card-row .act button{margin-left:.4rem}
+
+.practice{margin-top:1.25rem}
+.practice-card{
+  background:#071a31; border:1px solid rgba(255,255,255,.12);
+  border-radius:14px; padding:1rem; margin-bottom:.75rem;
+}
+.practice-card .pc-q{font-weight:700; margin-bottom:.4rem}
+.practice-actions{display:flex; gap:.5rem; flex-wrap:wrap}
+
+/* ---------- Juego ---------- */
+.game-wrap{display:grid; gap:.75rem}
+#drGame{width:100%; height:auto; border:1px solid rgba(255,255,255,.12); border-radius:12px; background:#061628}
+.game-controls{display:flex; gap:.75rem; align-items:center}
 
 /* ---------- BACKGROUNDS POR PÁGINA ---------- */
-/* Fondo para la página principal */
 body.index{
   background-image: url('https://i.imgur.com/cJfEzID.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-size: cover; background-position: center; background-attachment: fixed;
 }
-/* Fondo para la página "wconociendoamisprofes" */
 body.wconociendoamisprofes{
   background-image: url('https://i.imgur.com/xe5PqnU.jpg');
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
+  background-size: cover; background-position: center; background-attachment: fixed;
+}
+/* nuevas páginas */
+body.videos{
+  background-image: url('https://i.imgur.com/lw2iYwK.jpg'); /* cambia si deseas */
+  background-size: cover; background-position: center; background-attachment: fixed;
+}
+body.app{
+  background-image: url('https://i.imgur.com/y1g7o9x.jpg'); /* cambia si deseas */
+  background-size: cover; background-position: center; background-attachment: fixed;
+}
+body.juego{
+  background-image: url('https://i.imgur.com/0cRr0cL.jpg'); /* cambia si deseas */
+  background-size: cover; background-position: center; background-attachment: fixed;
 }
 
 /* ---------- RESPONSIVE ---------- */
@@ -148,6 +179,7 @@ body.wconociendoamisprofes{
   .grid-3{grid-template-columns:1fr}
   .video-grid{grid-template-columns:1fr}
   .flashcards{grid-template-columns:1fr}
+
   .nav-toggle{display:inline-block}
   .nav-menu{
     position:fixed; right:1rem; top:70px; background:var(--glass); backdrop-filter: blur(8px);
@@ -155,4 +187,6 @@ body.wconociendoamisprofes{
     display:none; flex-direction:column; padding:.75rem; border-radius:14px;
   }
   .nav-menu.show{display:flex}
+
+  .add-card{grid-template-columns:1fr; align-items:stretch}
 }
