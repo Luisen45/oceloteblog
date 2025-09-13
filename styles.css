@@ -1,299 +1,138 @@
-/* --------------------
-   Estilos globales
---------------------- */
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
+:root{
+  --bg:#0a2540;         /* azul profundo */
+  --fg:#f4f7fb;
+  --muted:#96a0b5;
+  --brand:#6c5ce7;      /* morado */
+  --accent:#ff8c00;     /* naranja */
+  --warn:#ffd54f;       /* amarillo */
+  --card:#0f2f55;
+  --glass:rgba(10,37,64,.6);
 }
 
-/*
-   Cada sección tendrá su propio fondo
-   usando background-attachment: fixed
-   para un efecto "parallax" sencillo
-*/
-section {
-  min-height: 100vh; /* Cada sección ocupa toda la altura de la ventana */
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-position: center; /* Centra la imagen de fondo */
-  background-attachment: fixed;
-  padding: 100px 20px;
-  margin-top: 60px; /* Evitar que el contenido quede debajo del nav */
-  background-color: rgba(255, 255, 255, 0.8); /* Fondo semitransparente */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
+  color:var(--fg);
+  background:linear-gradient(180deg,#081a2e, #0a2540 40%, #061628);
 }
 
-/* --------------------
-   Fondos de cada sección
-   Ajusta las URLs según necesites
---------------------- */
-#inicio {
-  background-image: url('https://imgur.com/cJfEzID.jpg');
+/* -------- Nav -------- */
+.site-header{position:relative}
+.nav{
+  position:sticky; top:0; z-index:1000;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:.75rem 1rem; background:var(--glass); backdrop-filter: blur(8px);
+  border-bottom:1px solid rgba(255,255,255,.08);
+}
+.brand{color:#fff; text-decoration:none; font-weight:700; letter-spacing:.2px}
+.brand .brand-mark{margin-right:.35rem}
+
+.nav-toggle{
+  display:none; width:42px; height:42px; border:1px solid rgba(255,255,255,.15);
+  background:transparent; border-radius:10px; cursor:pointer;
+}
+.nav-toggle span{display:block; height:2px; background:#fff; margin:8px 9px}
+
+.nav-menu{list-style:none; display:flex; gap:18px; margin:0; padding:0}
+.nav-menu a{color:#fff; text-decoration:none; font-weight:500}
+.nav-menu a:hover{color:var(--warn)}
+
+/* -------- Hero -------- */
+.hero{
+  background: radial-gradient(60% 60% at 20% 20%, rgba(108,92,231,.35), transparent 60%),
+              radial-gradient(60% 60% at 80% 0%, rgba(255,140,0,.25), transparent 60%);
+  padding:5rem 0 3rem;
+}
+.container{max-width:1100px; margin:0 auto; padding:0 1rem}
+.hero h1{font-size: clamp(1.8rem, 2.8vw, 3rem); margin:0 0 .5rem}
+.hero p{color:var(--muted); margin:0 0 1.25rem}
+.actions{display:flex; gap:.75rem; flex-wrap:wrap}
+
+.btn{
+  display:inline-block; padding:.75rem 1rem; border-radius:12px;
+  text-decoration:none; font-weight:600; border:1px solid transparent;
+}
+.btn.primary{background:var(--brand); color:#fff}
+.btn.ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.25)}
+.btn:hover{transform:translateY(-1px)}
+
+/* -------- Features -------- */
+.features{padding:2.5rem 0}
+.grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+.card{
+  background:linear-gradient(180deg,var(--card), #0a274a);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius:18px; padding:1.25rem;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
+}
+.card h3{margin:.2rem 0 0.5rem}
+.card p{color:var(--muted); margin:0 0 .75rem}
+.card .link{color:var(--warn); text-decoration:none; font-weight:600}
+
+/* -------- Secciones -------- */
+.section{padding:2.5rem 0}
+
+/* Videos */
+.video-grid{
+  display:grid; grid-template-columns:repeat(2,1fr); gap:1rem
+}
+.video-grid iframe{
+  width:100%; aspect-ratio:16/9; border:0; border-radius:14px;
+  box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-#videos {
-  background-image: url('https://imgur.com/xe5PqnU.jpg');
+/* Flashcards */
+.flashcards{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
+.flashcard{
+  background:#0b2a4d; border:1px solid rgba(255,255,255,.08);
+  border-radius:16px; padding:1rem; cursor:pointer; outline:none;
+  transition:transform .2s ease, border-color .2s ease;
 }
+.flashcard:focus,.flashcard:hover{transform:translateY(-2px); border-color:var(--accent)}
+.flashcard .question{font-weight:700}
+.flashcard .answer{display:none; color:#d6def0; margin-top:.5rem}
 
-#flashcards {
-  background-image: url('https://imgur.com/WN1CEaN.jpg');
+/* Calculadora */
+.calc{
+  max-width:360px; margin-inline:auto; background:#0b2a4d;
+  border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem;
 }
-
-#calculadora {
-  background-image: url('https://imgur.com/JKp8VNP.jpg');
+#display{
+  width:100%; padding:.75rem; border-radius:10px; border:1px solid rgba(255,255,255,.12);
+  background:#071a31; color:#fff; font-size:1.1rem; margin-bottom:.75rem;
 }
-
-#concursos {
-  background-image: url('https://imgur.com/FJg3CwE.jpg');
+.keys{display:grid; grid-template-columns:repeat(4,1fr); gap:.5rem}
+.keys button{
+  padding:.75rem .5rem; border-radius:12px; border:1px solid rgba(255,255,255,.12);
+  background:#11365f; color:#fff; font-weight:600; cursor:pointer;
 }
+.keys button:hover{background:#13406f}
+.keys .full{grid-column:1 / -1; background:#c5392a}
 
-/* --------------------
-   Navegación fija con menú hamburguesa
---------------------- */
-nav {
-  background-color: rgba(0, 0, 0, 0.7);
-  padding: 10px;
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 999;
+/* Formulario */
+form{max-width:520px; margin-inline:auto}
+label{display:block; margin:.75rem 0 .25rem}
+input, select{
+  width:100%; padding:.7rem; border-radius:10px; border:1px solid rgba(255,255,255,.15);
+  background:#071a31; color:#fff;
 }
+.form-msg{margin-top:.5rem; color:var(--warn)}
 
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  max-width: 1200px;
-  margin: 0 auto;
-}
+/* Footer */
+.site-footer{padding:2rem 0; border-top:1px solid rgba(255,255,255,.08); color:var(--muted);}
 
-.brand a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-}
-
-/* Icono hamburguesa */
-.menu-toggle {
-  display: none;
-  cursor: pointer;
-}
-
-.menu-toggle .bar {
-  display: block;
-  width: 25px;
-  height: 3px;
-  margin: 5px auto;
-  transition: all 0.3s ease-in-out;
-  background-color: #fff;
-}
-
-/* Lista de enlaces */
-.nav-menu {
-  list-style: none;
-  display: flex;
-  justify-content: center;
-  margin: 0;
-  padding: 0;
-}
-
-.nav-menu li {
-  margin: 0 15px;
-}
-
-.nav-menu li a {
-  color: #fff;
-  text-decoration: none;
-  font-weight: bold;
-  transition: color 0.3s ease;
-}
-
-.nav-menu li a:hover {
-  text-decoration: underline;
-  color: #ffcc00;
-}
-
-/* Animación para la X del menú cuando está activo */
-.menu-toggle.is-active .bar:nth-child(2) {
-  opacity: 0;
-}
-
-.menu-toggle.is-active .bar:nth-child(1) {
-  transform: translateY(8px) rotate(45deg);
-}
-
-.menu-toggle.is-active .bar:nth-child(3) {
-  transform: translateY(-8px) rotate(-45deg);
-}
-
-/* --------------------
-   Encabezados y otros
---------------------- */
-h2 {
-  text-align: center;
-  margin-bottom: 20px;
-}
-
-iframe,
-video {
-  display: block;
-  margin: 0 auto;
-  max-width: 100%;
-}
-
-/* --------------------
-   Flashcards
---------------------- */
-.flashcard {
-  background-color: #fff;
-  margin: 20px auto;
-  max-width: 400px;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  cursor: pointer;
-  transition: transform 0.3s ease;
-}
-
-.flashcard:hover {
-  transform: scale(1.05);
-}
-
-.flashcard .question {
-  font-weight: bold;
-}
-
-.flashcard .answer {
-  display: none;
-  margin-top: 10px;
-  color: #333;
-}
-
-/* --------------------
-   Calculadora
---------------------- */
-.calc-container {
-  max-width: 300px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-#display {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  text-align: right;
-  font-size: 1.2rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-.calc-buttons {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
-}
-
-.btn {
-  padding: 15px;
-  font-size: 1rem;
-  cursor: pointer;
-  border: none;
-  background-color: #4caf50;
-  color: #fff;
-  border-radius: 4px;
-  transition: background-color 0.3s ease;
-}
-
-.btn:hover {
-  background-color: #45a049;
-}
-
-.clear {
-  grid-column: span 4; /* Ocupa el ancho completo */
-  background-color: #f44336;
-}
-
-.clear:hover {
-  background-color: #e53935;
-}
-
-/* --------------------
-   Formulario de Concursos
---------------------- */
-form {
-  max-width: 400px;
-  margin: 0 auto;
-  background-color: #fff;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-form label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-form input,
-form select {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 15px;
-  border-radius: 4px;
-  border: 1px solid #ccc;
-}
-
-form button {
-  background-color: #4caf50;
-  color: #fff;
-  padding: 10px 20px;
-  border: none;
-  cursor: pointer;
-  font-size: 16px;
-  border-radius: 4px;
-}
-
-form button:hover {
-  background-color: #45a049;
-}
-
-/* --------------------
-   Responsividad
---------------------- */
-@media (max-width: 768px) {
-  .menu-toggle {
-    display: block;
+/* ------ Responsive ------ */
+@media (max-width: 960px){
+  .grid-3{grid-template-columns:1fr}
+  .video-grid{grid-template-columns:1fr}
+  .flashcards{grid-template-columns:1fr}
+  .nav-toggle{display:inline-block}
+  .nav-menu{
+    position:fixed; right:1rem; top:70px; background:var(--glass); backdrop-filter: blur(8px);
+    border:1px solid rgba(255,255,255,.12);
+    display:none; flex-direction:column; padding:.75rem; border-radius:14px;
   }
-
-  /* Menú inicialmente oculto en mobile */
-  .nav-menu {
-    position: absolute;
-    top: 60px;
-    right: 0;
-    background-color: rgba(0, 0, 0, 0.9);
-    width: 100%;
-    max-height: 0;
-    overflow: hidden;
-    flex-direction: column;
-    align-items: center;
-    transition: max-height 0.3s ease-in-out;
-  }
-
-  /* Cuando se active el menú, se despliega */
-  .nav-menu.active {
-    max-height: 300px;
-  }
-
-  .nav-menu li {
-    margin: 15px 0;
-  }
-
-  section {
-    padding: 80px 20px;
-  }
+  .nav-menu.show{display:flex}
 }
