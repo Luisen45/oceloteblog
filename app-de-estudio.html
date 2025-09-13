@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>App de Estudio — Ocelote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="app">
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="Volver a inicio">← Ocelote Comunidad</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="app-de-estudio.html" aria-current="page">App de Estudio</a></li>
+      <li><a href="juego-dr-hermman.html">Juego</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main class="section">
+  <div class="container">
+    <h1>App de Estudio</h1>
+    <p class="muted">Crea tus propias flashcards y practica con un modo aleatorio. Todo se guarda en tu navegador.</p>
+
+    <div id="studyApp" class="study-app card">
+      <!-- Añadir tarjetas -->
+      <form id="addCardForm" class="add-card">
+        <div>
+          <label for="qInput">Pregunta</label>
+          <input id="qInput" required placeholder="Ej. ¿Qué es la FEUM?" />
+        </div>
+        <div>
+          <label for="aInput">Respuesta</label>
+          <input id="aInput" required placeholder="Ej. Farmacopea de los Estados Unidos Mexicanos" />
+        </div>
+        <button class="btn primary" type="submit">Agregar</button>
+        <button class="btn ghost" id="clearAll" type="button" title="Borrar todas las tarjetas">Borrar todo</button>
+      </form>
+
+      <!-- Lista -->
+      <h3>Mis tarjetas</h3>
+      <div id="cardList" class="cards-list"></div>
+
+      <!-- Práctica -->
+      <div class="practice">
+        <h3>Práctica</h3>
+        <div id="practiceCard" class="practice-card">
+          <div class="pc-q">—</div>
+          <div class="pc-a">—</div>
+        </div>
+        <div class="practice-actions">
+          <button class="btn" id="showAnswer" type="button">Mostrar respuesta</button>
+          <button class="btn" id="markRight" type="button">✔ Correcta</button>
+          <button class="btn" id="markWrong" type="button">✖ Incorrecta</button>
+          <button class="btn primary" id="nextCard" type="button">Siguiente</button>
+        </div>
+        <p id="practiceStats" class="muted small"></p>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> Ocelote Comunidad — FES Zaragoza</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
