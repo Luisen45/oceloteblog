@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Juego: Dr Hermman — Ocelote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="juego">
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="Volver a inicio">← Ocelote Comunidad</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="videos.html">Videos</a></li>
+      <li><a href="app-de-estudio.html">App de Estudio</a></li>
+      <li><a href="juego-dr-hermman.html" aria-current="page">Juego</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main class="section">
+  <div class="container">
+    <h1>Juego: Dr Hermman</h1>
+    <p class="muted">Prototipo ultra ligero tipo “shooter”. Mueve con ← → ↑ ↓ y dispara con <kbd>Espacio</kbd>.</p>
+
+    <div class="game-wrap card">
+      <canvas id="drGame" width="720" height="420"></canvas>
+      <div class="game-controls">
+        <button class="btn primary" id="startGame" type="button">Iniciar</button>
+        <span id="scoreBox" class="muted small">Puntos: 0</span>
+      </div>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> Ocelote Comunidad — FES Zaragoza</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
