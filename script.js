@@ -1,77 +1,65 @@
-/* script.js */
+document.addEventListener("DOMContentLoaded", () => {
+  /* --- Nav toggle + smooth scroll --- */
+  const navToggle = document.getElementById("navToggle");
+  const navMenu = document.getElementById("navMenu");
 
-/* -------------------------------------------------------
-   Lógica para Flashcards:
-   - Al hacer clic en cada tarjeta, se muestra/oculta la respuesta
--------------------------------------------------------- */
-const flashcards = document.querySelectorAll('.flashcard');
-flashcards.forEach(card => {
-  card.addEventListener('click', () => {
-    const answer = card.querySelector('.answer');
-    // Si la respuesta está oculta, la mostramos; si está visible, la ocultamos
-    if (answer.style.display === 'none' || answer.style.display === '') {
-      answer.style.display = 'block';
-    } else {
-      answer.style.display = 'none';
-    }
+  navToggle.addEventListener("click", () => {
+    const open = navMenu.classList.toggle("show");
+    navToggle.setAttribute("aria-expanded", String(open));
   });
-});
 
-/* -------------------------------------------------------
-   Lógica para la Calculadora:
-   - appendValue(value): Agrega dígitos u operadores al display
-   - calculate(): Evalúa la expresión
-   - clearDisplay(): Limpia el display
--------------------------------------------------------- */
-const display = document.getElementById('display');
+  navMenu.querySelectorAll("a").forEach(a => {
+    a.addEventListener("click", e => {
+      e.preventDefault();
+      const id = a.getAttribute("href").slice(1);
+      const el = document.getElementById(id);
+      if (el) {
+        window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" });
+      }
+      navMenu.classList.remove("show");
+      navToggle.setAttribute("aria-expanded", "false");
+    });
+  });
 
-function appendValue(value) {
-  display.value += value;
-}
-
-function calculate() {
-  try {
-    display.value = eval(display.value);
-  } catch (error) {
-    display.value = 'Error';
+  /* --- Flashcards --- */
+  document.querySelectorAll(".flashcard").forEach(card => {
+    card.addEventListener("click", () => toggleCard(card));
+    card.addEventListener("keypress", e => { if (e.key === "Enter") toggleCard(card); });
+  });
+  function toggleCard(card){
+    const ans = card.querySelector(".answer");
+    const open = ans.style.display !== "block";
+    ans.style.display = open ? "block" : "none";
+    card.setAttribute("aria-expanded", String(open));
   }
-}
 
-function clearDisplay() {
-  display.value = '';
-}
-
-/* -------------------------------------------------------
-   Smooth Scrolling (opcional):
-   - Desplazamiento suave al hacer clic en los enlaces del menú
--------------------------------------------------------- */
-const navLinks = document.querySelectorAll('.nav-menu li a');
-navLinks.forEach(link => {
-  link.addEventListener('click', event => {
-    event.preventDefault();
-    const targetId = link.getAttribute('href').substring(1);
-    const targetSection = document.getElementById(targetId);
-
-    if (targetSection) {
-      window.scrollTo({
-        top: targetSection.offsetTop - 50, // Ajuste según la altura del nav
-        behavior: 'smooth'
-      });
-    }
-
-    // Cierra el menú al hacer clic en un enlace (en mobile)
-    mobileMenu.classList.remove('is-active');
-    navMenu.classList.remove('active');
+  /* --- Calculadora (evaluación segura) --- */
+  const display = document.getElementById("display");
+  document.querySelectorAll("[data-k]").forEach(btn => {
+    btn.addEventListener("click", () => display.value += btn.dataset.k);
   });
-});
+  document.getElementById("eq").addEventListener("click", () => {
+    const expr = display.value.trim();
+    // Permite solo dígitos, operadores básicos y paréntesis
+    if(!/^[0-9+\-*/().\s]+$/.test(expr)){ display.value = "Error"; return; }
+    try{
+      // Eval más seguro con Function y sin acceso al scope
+      // eslint-disable-next-line no-new-func
+      const res = Function(`"use strict";return (${expr})`)();
+      display.value = (res ?? "Error");
+    }catch{ display.value = "Error"; }
+  });
+  document.getElementById("clear").addEventListener("click", () => display.value = "");
 
-/* -------------------------------------------------------
-   Toggle menú hamburguesa en dispositivos móviles
--------------------------------------------------------- */
-const mobileMenu = document.getElementById('mobile-menu');
-const navMenu = document.querySelector('.nav-menu');
+  /* --- Formulario (demo) --- */
+  const form = document.getElementById("contestForm");
+  const msg = document.getElementById("formMsg");
+  form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    msg.textContent = "¡Gracias! Registramos tu interés. (Demo local)";
+    form.reset();
+  });
 
-mobileMenu.addEventListener('click', () => {
-  mobileMenu.classList.toggle('is-active');
-  navMenu.classList.toggle('active');
+  /* --- Año dinámico --- */
+  document.getElementById("year").textContent = new Date().getFullYear();
 });
