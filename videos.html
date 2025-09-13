@@ -1,1 +1,50 @@
 
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Videos — Ocelote</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body class="videos">
+
+<header class="site-header">
+  <nav class="nav">
+    <a class="brand" href="index.html" aria-label="Volver a inicio">← Ocelote Comunidad</a>
+    <ul class="nav-menu" id="navMenu">
+      <li><a href="videos.html" aria-current="page">Videos</a></li>
+      <li><a href="app-de-estudio.html">App de Estudio</a></li>
+      <li><a href="juego-dr-hermman.html">Juego</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+      <span></span><span></span><span></span>
+    </button>
+  </nav>
+</header>
+
+<main class="section">
+  <div class="container">
+    <h1>Videos</h1>
+    <p class="muted">Colección curada de clases y explicaciones para QFB.</p>
+
+    <div class="video-grid">
+      <!-- Reemplaza VIDEO_ID_1, etc. -->
+      <iframe title="Video 1" src="https://www.youtube.com/embed/VIDEO_ID_1" loading="lazy" allowfullscreen></iframe>
+      <iframe title="Video 2" src="https://www.youtube.com/embed/VIDEO_ID_2" loading="lazy" allowfullscreen></iframe>
+      <iframe title="Video 3" src="https://www.youtube.com/embed/VIDEO_ID_3" loading="lazy" allowfullscreen></iframe>
+      <iframe title="Video 4" src="https://www.youtube.com/embed/VIDEO_ID_4" loading="lazy" allowfullscreen></iframe>
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>© <span id="year"></span> Ocelote Comunidad — FES Zaragoza</p>
+  </div>
+</footer>
+
+<script src="script.js" defer></script>
+</body>
+</html>
