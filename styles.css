@@ -44,15 +44,15 @@ body{
 /* ========== HERO (inicio) ==========\*/
 .hero{
   position:relative;
-  padding:5rem 0 3rem;
-  min-height:45vh;
+  padding:2rem 0 2rem;
+  min-height:25vh;
   display:flex; align-items:center;
 }
 .hero .overlay{
   position:absolute; inset:0;
   background:
     radial-gradient(800px 400px at 90% -10%, rgba(108,92,231,.35), transparent 70%),
-    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0,0,0,.55));
   pointer-events:none;
 }
 .hero h1{font-size: clamp(1.8rem, 2.8vw, 3rem); margin:0 0 .5rem}
@@ -181,19 +181,15 @@ body{
 
 /* ========== BACKGROUNDS POR PÁGINA ==========\*/
 body.index{
-  background-image: url('https://i.imgur.com/cJfEzID.jpg');
-  background-size: cover; background-position: center; background-attachment: fixed;
-}
-body.wconociendoamisprofes{
-  background-image: url('https://i.imgur.com/xe5PqnU.jpg');
+  background-image: url("./assets/fondoiniciogris.png");
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 body.videos{
-  background-image: url('https://i.imgur.com/lw2iYwK.jpg');
+  background-image: url("./assets/fondoocelotetv.png");
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 body.app{
-  background-image: url('https://i.imgur.com/y1g7o9x.jpg');
+  background-image: url("./assets/fondooceloteapp.png");
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 body.juego{
