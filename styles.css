@@ -1,9 +1,10 @@
+/* styles.css */
 :root{
-  --bg:#0a2540;         /* azul profundo */
+  --bg:#0a2540;
   --fg:#f4f7fb;
   --muted:#b7c1d6;
-  --brand:#6c5ce7;      /* morado */
-  --accent:#ff8c00;     /* naranja */
+  --brand:#6c5ce7;
+  --accent:#ff8c00;
   --ring:rgba(255,255,255,.20);
   --glass:rgba(10,37,64,.55);
   --card:#0f2f55;
@@ -23,7 +24,7 @@ a{color:inherit; text-decoration:none}
 .muted{color:var(--muted)}
 .small{font-size:.92rem}
 
-/* ------- NAV ------- */
+/* NAV */
 .site-header{position:relative}
 .nav{
   position:sticky; top:0; z-index:1000;
@@ -47,7 +48,7 @@ a{color:inherit; text-decoration:none}
   .nav-menu.show{transform:translateY(0)}
 }
 
-/* ------- HERO ------- */
+/* HERO */
 .hero{
   position:relative; isolation:isolate;
   min-height:56svh; display:grid; place-items:center; text-align:center;
@@ -69,13 +70,13 @@ a{color:inherit; text-decoration:none}
 .btn.subtle{border-color:var(--ring); background:rgba(255,255,255,.05)}
 .btn:hover{transform:translateY(-1px)}
 
-/* ------- SECTIONS ------- */
+/* SECTIONS */
 .section{padding:3rem 0}
 .container{width:min(1100px, 100% - 2rem); margin-inline:auto}
 .section-head h2{margin:0 0 .25rem}
 .section-head p{margin:0}
 
-/* ------- ANUNCIOS ------- */
+/* ANUNCIOS */
 .announcements{
   display:grid; gap:1rem; grid-template-columns: repeat(2, 1fr);
   width:min(1100px, 100% - 2rem); margin:1rem auto 0;
@@ -99,7 +100,7 @@ a{color:inherit; text-decoration:none}
 .story-info h3{margin:.1rem 0 .25rem; font-size:1.1rem}
 .story-info p{margin:0; color:#d2dcf3}
 
-/* ------- ACCESOS ------- */
+/* ACCESOS */
 .links-grid{
   display:grid; gap:1rem; grid-template-columns: repeat(3, 1fr);
   width:min(1100px, 100% - 2rem); margin:1rem auto 0;
@@ -116,7 +117,7 @@ a{color:inherit; text-decoration:none}
 .link-card p{margin:0; color:var(--muted); font-size:.95rem}
 .link-card .arrow{font-weight:700}
 
-/* ------- ABOUT ------- */
+/* ABOUT */
 .about{padding-block:2.25rem}
 .about-wrap{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
@@ -129,10 +130,10 @@ a{color:inherit; text-decoration:none}
   .about-wrap{flex-direction:column; align-items:flex-start}
 }
 
-/* ------- FOOTER ------- */
+/* FOOTER */
 .site-footer{border-top:1px solid var(--ring); background:rgba(255,255,255,.03)}
 .site-footer .container{padding:1.25rem 1rem; text-align:center}
 
-/* ------- REVEAL ------- */
-.reveal{opacity:0; transform:translateY(8px); transition: .6s ease}
+/* REVEAL */
+.reveal{opacity:0; transform:translateY(8px); transition:.6s ease}
 .reveal.is-visible{opacity:1; transform:none}
