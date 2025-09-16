@@ -9,6 +9,7 @@
   --glass:rgba(10,37,64,.6);
 }
 
+/* ========== BASE ==========\*/
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -17,10 +18,12 @@ body{
   color:var(--fg);
   background:#0a2540;
 }
+.container{max-width:1100px; margin:0 auto; padding:0 1rem}
+.section{padding:2.5rem 0}
 .muted{color:var(--muted)}
 .small{font-size:.9rem}
 
-/* ---------- NAV ---------- */
+/* ========== NAV ==========\*/
 .site-header{position:relative}
 .nav{
   position:sticky; top:0; z-index:1000;
@@ -38,7 +41,7 @@ body{
   background:transparent; border-radius:10px; cursor:pointer;}
 .nav-toggle span{display:block; height:2px; background:#fff; margin:8px 9px}
 
-/* ---------- HERO ---------- */
+/* ========== HERO (inicio) ==========\*/
 .hero{
   position:relative;
   padding:5rem 0 3rem;
@@ -47,23 +50,89 @@ body{
 }
 .hero .overlay{
   position:absolute; inset:0;
-  background:linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
+  background:
+    radial-gradient(800px 400px at 90% -10%, rgba(108,92,231,.35), transparent 70%),
+    linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.55));
   pointer-events:none;
 }
-.container{max-width:1100px; margin:0 auto; padding:0 1rem}
 .hero h1{font-size: clamp(1.8rem, 2.8vw, 3rem); margin:0 0 .5rem}
 .hero p{color:var(--muted); margin:0 0 1.25rem}
 .actions{display:flex; gap:.75rem; flex-wrap:wrap}
-
 .btn{
   display:inline-block; padding:.75rem 1rem; border-radius:12px;
-  text-decoration:none; font-weight:600; border:1px solid transparent;
+  text-decoration:none; font-weight:600; border:1px solid transparent; transition:.2s ease;
 }
 .btn.primary{background:var(--brand); color:#fff}
 .btn.ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.25)}
+.btn.subtle{background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.12)}
 .btn:hover{transform:translateY(-1px)}
 
-/* ---------- FEATURES ---------- */
+/* ========== INICIO → Anuncios (4 tarjetas) ==========\*/
+.section-head h2{margin:0 0 .25rem}
+.section-head p{margin:0}
+
+.announcements{
+  display:grid; gap:1rem; grid-template-columns: repeat(2, 1fr);
+  width:min(1100px, 100%); margin:1rem auto 0;
+}
+.story-card{
+  position:relative; border-radius:18px; overflow:hidden; background:var(--card);
+  border:1px solid rgba(255,255,255,.08); box-shadow: 0 10px 24px rgba(0,0,0,.25);
+  cursor:pointer; transition: transform .25s ease, box-shadow .25s ease; isolation:isolate;
+}
+.story-card img{width:100%; height:100%; object-fit:cover; aspect-ratio:16/9; display:block}
+.story-card:hover{transform:translateY(-2px); box-shadow: 0 16px 42px rgba(0,0,0,.35)}
+.story-info{
+  position:absolute; inset:auto 0 0 0; padding:1rem;
+  background:linear-gradient(180deg, rgba(15,47,85,.6), rgba(15,47,85,.95));
+  color:#eaf1ff;
+}
+.story-info h3{margin:.1rem 0 .25rem; font-size:1.08rem}
+.story-info p{margin:0; color:#d2dcf3}
+
+@media (max-width: 860px){
+  .announcements{
+    display:grid; grid-auto-flow:column; grid-auto-columns:90%;
+    overflow-x:auto; scroll-snap-type:x mandatory; padding-bottom:.5rem;
+  }
+  .announcements > *{scroll-snap-align:center}
+}
+
+/* ========== INICIO → Accesos grandes ==========\*/
+.links-grid{
+  display:grid; gap:1rem; grid-template-columns: repeat(3, 1fr);
+  width:min(1100px, 100%); margin:1rem auto 0;
+}
+.link-card{
+  display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem;
+  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem 1.1rem;
+  transition:.25s; backdrop-filter: blur(6px); color:#fff; text-decoration:none;
+}
+.link-card:hover{transform:translateY(-2px); background:rgba(255,255,255,.06)}
+.link-card .icon{font-size:1.4rem}
+.link-card h3{margin:.1rem 0 .2rem}
+.link-card p{margin:0; color:var(--muted); font-size:.95rem}
+.link-card .arrow{font-weight:700}
+
+@media (max-width: 860px){
+  .links-grid{grid-template-columns:1fr}
+}
+
+/* ========== INICIO → Mini about ==========\*/
+.about-wrap{
+  display:flex; align-items:center; justify-content:space-between; gap:1rem;
+  background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+  border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1.25rem 1.25rem;
+}
+.about-wrap h2{margin:.1rem 0 .5rem}
+.about-wrap p{color:var(--muted); margin:0 0 .5rem}
+@media (max-width: 860px){
+  .about-wrap{flex-direction:column; align-items:flex-start}
+}
+
+/* ========== OTRAS SECCIONES (NO TOCAR ESTRUCTURA) ==========\*/
+
+/* Features (si se usan en otras páginas) */
 .features{padding:2.5rem 0}
 .grid-3{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
 .card{
@@ -76,9 +145,6 @@ body{
 .card p{color:var(--muted); margin:0 0 .75rem}
 .card .link{color:var(--warn); text-decoration:none; font-weight:600}
 
-/* ---------- SECCIONES ---------- */
-.section{padding:2.5rem 0}
-
 /* Videos */
 .video-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
 .video-grid iframe{
@@ -86,10 +152,10 @@ body{
   box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-/* Flashcards simples (index) */
+/* Flashcards simples */
 .flashcards{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
 .flashcard{
-  background:#0b2a4d; border:1px solid rgba(255,255,255,.08);
+  background:#0b2a4d; border:1px solid rgba(255,255,white,.08);
   border-radius:16px; padding:1rem; cursor:pointer; outline:none;
   transition:transform .2s ease, border-color .2s ease;
 }
@@ -97,7 +163,7 @@ body{
 .flashcard .question{font-weight:700}
 .flashcard .answer{display:none; color:#d6def0; margin-top:.5rem}
 
-/* Calculadora (index) */
+/* Calculadora */
 .calc{
   max-width:360px; margin-inline:auto; background:#0b2a4d;
   border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem;
@@ -114,7 +180,7 @@ body{
 .keys button:hover{background:#13406f}
 .keys .full{grid-column:1 / -1; background:#c5392a}
 
-/* Formulario */
+/* Formularios (concursos) */
 form{max-width:520px; margin-inline:auto}
 label{display:block; margin:.75rem 0 .25rem}
 input, select{
@@ -123,7 +189,7 @@ input, select{
 }
 .form-msg{margin-top:.5rem; color:var(--warn)}
 
-/* ---------- App de Estudio ---------- */
+/* App de Estudio (se deja intacto para su página) */
 .study-app{margin-top:1rem}
 .add-card{display:grid; grid-template-columns:1fr 1fr auto auto; gap:.75rem; align-items:end}
 .add-card input{height:42px}
@@ -137,7 +203,6 @@ input, select{
 .card-row .qa .q{font-weight:700}
 .card-row .qa .a{color:#d6def0}
 .card-row .act button{margin-left:.4rem}
-
 .practice{margin-top:1.25rem}
 .practice-card{
   background:#071a31; border:1px solid rgba(255,255,255,.12);
@@ -146,12 +211,12 @@ input, select{
 .practice-card .pc-q{font-weight:700; margin-bottom:.4rem}
 .practice-actions{display:flex; gap:.5rem; flex-wrap:wrap}
 
-/* ---------- Juego ---------- */
+/* Juego (se deja intacto para su página) */
 .game-wrap{display:grid; gap:.75rem}
 #drGame{width:100%; height:auto; border:1px solid rgba(255,255,255,.12); border-radius:12px; background:#061628}
 .game-controls{display:flex; gap:.75rem; align-items:center}
 
-/* ---------- BACKGROUNDS POR PÁGINA ---------- */
+/* ========== BACKGROUNDS POR PÁGINA ==========\*/
 body.index{
   background-image: url('https://i.imgur.com/cJfEzID.jpg');
   background-size: cover; background-position: center; background-attachment: fixed;
@@ -160,25 +225,24 @@ body.wconociendoamisprofes{
   background-image: url('https://i.imgur.com/xe5PqnU.jpg');
   background-size: cover; background-position: center; background-attachment: fixed;
 }
-/* nuevas páginas */
 body.videos{
-  background-image: url('https://i.imgur.com/lw2iYwK.jpg'); /* cambia si deseas */
+  background-image: url('https://i.imgur.com/lw2iYwK.jpg');
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 body.app{
-  background-image: url('https://i.imgur.com/y1g7o9x.jpg'); /* cambia si deseas */
+  background-image: url('https://i.imgur.com/y1g7o9x.jpg');
+  background-size: cover; background-position: center; background-attachment: fixed;
+}
+body.juego{
+  background-image: url('https://i.imgur.com/ulaCykE.jpg'); /* escritorio */
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 
-/* --- JUEGO: Fondo desktop (PC) por defecto --- */
-body.juego{
-  background-image: url('https://i.imgur.com/ulaCykE.jpg'); /* imagen escritorio */
-  background-size: cover;
-  background-position: center;
-  background-attachment: fixed;
-}
+/* ========== FOOTER ==========\*/
+.site-footer{border-top:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03)}
+.site-footer .container{padding:1.25rem 1rem; text-align:center}
 
-/* ---------- RESPONSIVE ---------- */
+/* ========== RESPONSIVE ==========\*/
 @media (max-width: 960px){
   .grid-3{grid-template-columns:1fr}
   .video-grid{grid-template-columns:1fr}
@@ -195,10 +259,10 @@ body.juego{
   .add-card{grid-template-columns:1fr; align-items:stretch}
 }
 
-/* --- JUEGO: Fondo para móviles (vertical/angosto) --- */
+/* Juego: fondo móvil */
 @media (max-width: 960px), (orientation: portrait){
   body.juego{
-    background-image: url('https://i.imgur.com/GracwSj.jpg'); /* imagen móvil */
-    background-attachment: scroll; /* más fluido en móvil */
+    background-image: url('https://i.imgur.com/GracwSj.jpg'); /* móvil */
+    background-attachment: scroll;
   }
 }
