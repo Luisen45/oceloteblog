@@ -152,43 +152,6 @@ body{
   box-shadow:0 10px 24px rgba(0,0,0,.25);
 }
 
-/* Flashcards simples */
-.flashcards{display:grid; grid-template-columns:repeat(3,1fr); gap:1rem}
-.flashcard{
-  background:#0b2a4d; border:1px solid rgba(255,255,white,.08);
-  border-radius:16px; padding:1rem; cursor:pointer; outline:none;
-  transition:transform .2s ease, border-color .2s ease;
-}
-.flashcard:focus,.flashcard:hover{transform:translateY(-2px); border-color:var(--accent)}
-.flashcard .question{font-weight:700}
-.flashcard .answer{display:none; color:#d6def0; margin-top:.5rem}
-
-/* Calculadora */
-.calc{
-  max-width:360px; margin-inline:auto; background:#0b2a4d;
-  border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem;
-}
-#display{
-  width:100%; padding:.75rem; border-radius:10px; border:1px solid rgba(255,255,255,.12);
-  background:#071a31; color:#fff; font-size:1.1rem; margin-bottom:.75rem;
-}
-.keys{display:grid; grid-template-columns:repeat(4,1fr); gap:.5rem}
-.keys button{
-  padding:.75rem .5rem; border-radius:12px; border:1px solid rgba(255,255,255,.12);
-  background:#11365f; color:#fff; font-weight:600; cursor:pointer;
-}
-.keys button:hover{background:#13406f}
-.keys .full{grid-column:1 / -1; background:#c5392a}
-
-/* Formularios (concursos) */
-form{max-width:520px; margin-inline:auto}
-label{display:block; margin:.75rem 0 .25rem}
-input, select{
-  width:100%; padding:.7rem; border-radius:10px; border:1px solid rgba(255,255,255,.15);
-  background:#071a31; color:#fff;
-}
-.form-msg{margin-top:.5rem; color:var(--warn)}
-
 /* App de Estudio (se deja intacto para su página) */
 .study-app{margin-top:1rem}
 .add-card{display:grid; grid-template-columns:1fr 1fr auto auto; gap:.75rem; align-items:end}
