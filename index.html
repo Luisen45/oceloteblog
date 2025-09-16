@@ -20,7 +20,9 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu" id="navMenu">
+      <li><a href="#inicio">Inicio</a></li>
       <li><a href="#anuncios">Anuncios</a></li>
+      <li><a href="#accesos">Secciones</a></li>
       <li><a href="videos.html">OceloteTV</a></li>
       <li><a href="app-de-estudio.html">OceloteApp</a></li>
       <li><a href="juego-dr-hermman.html">Dr Hermman</a></li>
@@ -32,7 +34,7 @@
     <div class="overlay"></div>
     <div class="container">
       <h1>Aprende, crea y comparte</h1>
-      <p>Un hub para estudiantes QFB: contenido curado, juegos de estudio y proyectos de la comunidad.</p>
+      <p>Hub estudiantil para QFB: contenidos curados, juegos de estudio y proyectos de la comunidad.</p>
       <div class="actions">
         <a class="btn primary" href="#anuncios">Ver anuncios</a>
         <a class="btn ghost" href="#accesos">Explorar secciones</a>
@@ -42,48 +44,48 @@
 </header>
 
 <main>
-  <!-- ANUNCIOS (4 tarjetas) -->
+  <!-- ANUNCIOS 4/4 -->
   <section id="anuncios" class="section">
     <div class="container section-head">
       <h2>Lo nuevo en OceloteApp</h2>
-      <p class="muted small">Cuatro escenas introductorias para conocer la app. Da clic para ampliar o leer más.</p>
+      <p class="muted small">Cuatro escenas introductorias. Haz clic para abrir la sección.</p>
     </div>
 
-    <!-- Grid 2x2 (scroll-snap en móvil) -->
     <div class="announcements">
-      <!-- Tarjeta 1 -->
-      <article class="story-card" data-title="¿Qué es OceloteApp?" data-link="app-de-estudio.html">
-        <img src="assets/anuncio-1.png" alt="Ocelote en la habitación presentando OceloteApp" loading="lazy">
+      <!-- Cambia los src por tus archivos -->
+      <article class="story-card reveal" tabindex="0" role="button"
+               data-link="app-de-estudio.html" aria-label="¿Qué es OceloteApp?">
+        <img src="assets/anuncio-1.png" alt="Ocelote presentando OceloteApp en habitación" loading="lazy">
         <div class="story-info">
           <h3>OceloteApp en 30 segundos</h3>
-          <p>Hecha por estudiantes para estudiantes: flashcards, memorama, rompecabezas y más.</p>
+          <p>Hecha por y para estudiantes. Flashcards, memorama, rompecabezas y más.</p>
         </div>
       </article>
 
-      <!-- Tarjeta 2 -->
-      <article class="story-card" data-title="Aprendizaje activo" data-link="app-de-estudio.html#beneficios">
-        <img src="assets/anuncio-2.png" alt="Ocelote en el autobús usando la app con juegos" loading="lazy">
+      <article class="story-card reveal" tabindex="0" role="button"
+               data-link="app-de-estudio.html#beneficios" aria-label="Aprendizaje activo">
+        <img src="assets/anuncio-2.png" alt="Ocelote en autobús usando juegos de la app" loading="lazy">
         <div class="story-info">
           <h3>Aprende jugando</h3>
-          <p>Memoria, práctica espaciada y codificación visual para recordar más en menos tiempo.</p>
+          <p>Recuperación activa, práctica espaciada y codificación visual para recordar más.</p>
         </div>
       </article>
 
-      <!-- Tarjeta 3 -->
-      <article class="story-card" data-title="Modo sin conexión" data-link="app-de-estudio.html#offline">
+      <article class="story-card reveal" tabindex="0" role="button"
+               data-link="app-de-estudio.html#offline" aria-label="Modo sin conexión">
         <img src="assets/anuncio-3.png" alt="Ocelote en el parque estudiando sin conexión" loading="lazy">
         <div class="story-info">
-          <h3>Funciona offline</h3>
-          <p>Tu material vive en tu dispositivo: rápido y disponible incluso sin señal.</p>
+          <h3>Funciona sin conexión</h3>
+          <p>Tu material vive en tu dispositivo. Rápido y disponible incluso sin señal.</p>
         </div>
       </article>
 
-      <!-- Tarjeta 4 -->
-      <article class="story-card" data-title="Comparte y colabora" data-link="app-de-estudio.html#colaborativo">
+      <article class="story-card reveal" tabindex="0" role="button"
+               data-link="app-de-estudio.html#colaborativo" aria-label="Comparte y colabora">
         <img src="assets/anuncio-4.png" alt="Dos ocelotes compartiendo barajas y paquetes" loading="lazy">
         <div class="story-info">
           <h3>Biblioteca colaborativa</h3>
-          <p>Comparte barajas y descarga paquetes verificados. La comunidad hace más fuerte el estudio.</p>
+          <p>Comparte barajas y descarga paquetes verificados de la comunidad.</p>
         </div>
       </article>
     </div>
@@ -95,7 +97,7 @@
       <h2>Explora secciones</h2>
     </div>
     <div class="links-grid">
-      <a class="link-card" href="app-de-estudio.html">
+      <a class="link-card reveal" href="app-de-estudio.html">
         <div class="icon">📚</div>
         <div>
           <h3>OceloteApp</h3>
@@ -103,7 +105,7 @@
         </div>
         <span class="arrow">→</span>
       </a>
-      <a class="link-card" href="videos.html">
+      <a class="link-card reveal" href="videos.html">
         <div class="icon">📺</div>
         <div>
           <h3>OceloteTV</h3>
@@ -111,7 +113,7 @@
         </div>
         <span class="arrow">→</span>
       </a>
-      <a class="link-card" href="juego-dr-hermman.html">
+      <a class="link-card reveal" href="juego-dr-hermman.html">
         <div class="icon">🕹️</div>
         <div>
           <h3>Dr Hermman</h3>
@@ -124,13 +126,10 @@
 
   <!-- Mini about -->
   <section class="section about">
-    <div class="container about-wrap">
+    <div class="container about-wrap reveal">
       <div>
         <h2>¿Qué es Ocelote Comunidad?</h2>
-        <p>
-          Un proyecto estudiantil inspirado en la FES Zaragoza para organizar recursos de aprendizaje,
-          impulsar la colaboración y acercar la ciencia con diseño fresco.
-        </p>
+        <p>Proyecto estudiantil de la FES Zaragoza para organizar recursos, colaborar y aprender con estilo.</p>
       </div>
       <a class="btn subtle" href="#anuncios">Ver anuncios</a>
     </div>
