@@ -1,5 +1,8 @@
+// script.js — coherente con tu index y sin romper OceloteApp ni Dr Hermman
 document.addEventListener("DOMContentLoaded", () => {
-  /* --- Nav toggle + smooth scroll (solo si hay anclas) --- */
+  /* -------------------------------------------
+   * NAV: toggle móvil + smooth scroll a anclas
+   * ------------------------------------------- */
   const navToggle = document.getElementById("navToggle");
   const navMenu = document.getElementById("navMenu");
 
@@ -16,7 +19,10 @@ document.addEventListener("DOMContentLoaded", () => {
           e.preventDefault();
           const id = href.slice(1);
           const el = document.getElementById(id);
-          if (el) window.scrollTo({ top: el.offsetTop - 60, behavior: "smooth" });
+          if (el) {
+            const y = el.getBoundingClientRect().top + window.pageYOffset - 60;
+            window.scrollTo({ top: y, behavior: "smooth" });
+          }
           navMenu.classList.remove("show");
           navToggle.setAttribute("aria-expanded", "false");
         }
@@ -24,7 +30,27 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  /* --- Flashcards simples (index) --- */
+  /* -------------------------------------------
+   * INICIO: anuncios (tarjetas clicables)
+   * - Usa data-link para navegar
+   * ------------------------------------------- */
+  document.querySelectorAll(".story-card").forEach(card => {
+    const go = () => {
+      const link = card.getAttribute("data-link");
+      if (link) window.location.href = link;
+    };
+    card.addEventListener("click", go);
+    card.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") {
+        e.preventDefault();
+        go();
+      }
+    });
+  });
+
+  /* -------------------------------------------
+   * Flashcards simples (si existen en otra página)
+   * ------------------------------------------- */
   document.querySelectorAll(".flashcard").forEach(card => {
     const toggle = () => {
       const ans = card.querySelector(".answer");
@@ -36,7 +62,9 @@ document.addEventListener("DOMContentLoaded", () => {
     card.addEventListener("keypress", e => { if (e.key === "Enter") toggle(); });
   });
 
-  /* --- Calculadora (index) --- */
+  /* -------------------------------------------
+   * Calculadora (si existe en alguna página)
+   * ------------------------------------------- */
   const display = document.getElementById("display");
   if (display) {
     document.querySelectorAll("[data-k]").forEach(btn => {
@@ -48,15 +76,19 @@ document.addEventListener("DOMContentLoaded", () => {
       const expr = display.value.trim();
       if(!/^[0-9+\-*/().\s]+$/.test(expr)){ display.value = "Error"; return; }
       try{
+        // Eval seguro acotado
         // eslint-disable-next-line no-new-func
-        const res = Function("use strict";return (${expr}))();
+        const res = Function(`"use strict";return (${expr})`)();
         display.value = (res ?? "Error");
       }catch{ display.value = "Error"; }
     });
     clr && clr.addEventListener("click", () => display.value = "");
   }
 
-  /* --- App de Estudio --- */
+  /* -------------------------------------------
+   * OceloteApp (app-de-estudio.html)
+   * Mantiene tu lógica, con null-safety y fix de templates
+   * ------------------------------------------- */
   const studyApp = document.getElementById("studyApp");
   if (studyApp) {
     const form = document.getElementById("addCardForm");
@@ -66,8 +98,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const list = document.getElementById("cardList");
 
     const pc = document.getElementById("practiceCard");
-    const pcQ = pc.querySelector(".pc-q");
-    const pcA = pc.querySelector(".pc-a");
+    const pcQ = pc?.querySelector(".pc-q");
+    const pcA = pc?.querySelector(".pc-a");
     const showAnswer = document.getElementById("showAnswer");
     const markRight = document.getElementById("markRight");
     const markWrong = document.getElementById("markWrong");
@@ -76,35 +108,43 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let cards = loadCards();
     let currentIndex = -1;
-    let reveal = false;
 
     function loadCards(){
-      try{
-        return JSON.parse(localStorage.getItem("studyCards") || "[]");
-      }catch{ return []; }
+      try{ return JSON.parse(localStorage.getItem("studyCards") || "[]"); }
+      catch{ return []; }
     }
     function saveCards(){
       localStorage.setItem("studyCards", JSON.stringify(cards));
     }
+    function escapeHtml(s){
+      return s.replace(/[&<>"']/g, m => (
+        {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]
+      ));
+    }
 
     function renderList(){
+      if (!list) return;
       list.innerHTML = "";
       if (cards.length === 0){
-        list.innerHTML = <p class="muted">Aún no hay tarjetas.</p>;
+        list.innerHTML = `<p class="muted">Aún no hay tarjetas.</p>`;
+        if (pcQ) pcQ.textContent = "—";
+        if (pcA) pcA.textContent = "—";
+        if (stats) stats.textContent = "Sin tarjetas.";
         return;
       }
       cards.forEach((c, i) => {
         const row = document.createElement("div");
         row.className = "card-row";
-        row.innerHTML = <div class="qa">
-          <div class="q">${escapeHtml(c.q)}</div>
-          <div class="a">${escapeHtml(c.a)}</div>
-          <div class="muted small">Aciertos: ${c.right||0} / Intentos: ${c.attempts||0}</div>
-        </div>
-        <div class="act">
-          <button class="btn ghost" data-edit="${i}" type="button">Editar</button>
-          <button class="btn" data-del="${i}" type="button">Eliminar</button>
-        </div>;
+        row.innerHTML = `
+          <div class="qa">
+            <div class="q">${escapeHtml(c.q)}</div>
+            <div class="a">${escapeHtml(c.a)}</div>
+            <div class="muted small">Aciertos: ${c.right||0} / Intentos: ${c.attempts||0}</div>
+          </div>
+          <div class="act">
+            <button class="btn ghost" data-edit="${i}" type="button">Editar</button>
+            <button class="btn" data-del="${i}" type="button">Eliminar</button>
+          </div>`;
         list.appendChild(row);
       });
 
@@ -113,6 +153,11 @@ document.addEventListener("DOMContentLoaded", () => {
           const i = +b.dataset.del;
           cards.splice(i,1);
           saveCards(); renderList();
+          if (cards.length) pickCard(); else {
+            if (pcQ) pcQ.textContent = "—";
+            if (pcA) pcA.textContent = "—";
+            if (stats) stats.textContent = "Sin tarjetas.";
+          }
         });
       });
       list.querySelectorAll("[data-edit]").forEach(b=>{
@@ -128,69 +173,72 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
 
+    function updateStats(){
+      if (!stats) return;
+      const totalAttempts = cards.reduce((s,c)=>s+(c.attempts||0),0);
+      const totalRight = cards.reduce((s,c)=>s+(c.right||0),0);
+      stats.textContent = `Tarjetas: ${cards.length} · Intentos: ${totalAttempts} · Aciertos: ${totalRight}`;
+    }
+
     function pickCard(){
+      if (!pcQ || !pcA) return;
       if (cards.length===0){
-        pcQ.textContent = "—"; pcA.textContent = "—"; stats.textContent = "Sin tarjetas.";
-        return;
+        pcQ.textContent = "—"; pcA.textContent = "—"; updateStats(); return;
       }
       currentIndex = Math.floor(Math.random()*cards.length);
       pcQ.textContent = cards[currentIndex].q;
       pcA.textContent = "•••";
-      reveal = false;
       updateStats();
     }
-    function updateStats(){
-      const totalAttempts = cards.reduce((s,c)=>s+(c.attempts||0),0);
-      const totalRight = cards.reduce((s,c)=>s+(c.right||0),0);
-      stats.textContent = Tarjetas: ${cards.length} · Intentos: ${totalAttempts} · Aciertos: ${totalRight};
-    }
 
-    form.addEventListener("submit", e=>{
+    form?.addEventListener("submit", e=>{
       e.preventDefault();
-      const q = qInput.value.trim();
-      const a = aInput.value.trim();
+      const q = qInput?.value.trim();
+      const a = aInput?.value.trim();
       if (!q || !a) return;
       cards.push({q,a,attempts:0,right:0});
-      saveCards(); renderList();
-      qInput.value=""; aInput.value="";
-      if (cards.length===1) pickCard();
+      saveCards(); renderList(); pickCard();
+      if (qInput) qInput.value = "";
+      if (aInput) aInput.value = "";
     });
 
-    clearAll.addEventListener("click", ()=>{
+    clearAll?.addEventListener("click", ()=>{
       if (confirm("¿Borrar todas las tarjetas?")){
         cards = []; saveCards(); renderList(); pickCard();
       }
     });
 
-    showAnswer.addEventListener("click", ()=>{
-      if (currentIndex<0) return;
+    showAnswer?.addEventListener("click", ()=>{
+      if (currentIndex<0 || !pcA) return;
       pcA.textContent = cards[currentIndex].a;
-      reveal = true;
     });
-    markRight.addEventListener("click", ()=>{
+    markRight?.addEventListener("click", ()=>{
       if (currentIndex<0) return;
       cards[currentIndex].attempts = (cards[currentIndex].attempts||0)+1;
       cards[currentIndex].right = (cards[currentIndex].right||0)+1;
       saveCards(); renderList(); pickCard();
     });
-    markWrong.addEventListener("click", ()=>{
+    markWrong?.addEventListener("click", ()=>{
       if (currentIndex<0) return;
       cards[currentIndex].attempts = (cards[currentIndex].attempts||0)+1;
       saveCards(); renderList(); pickCard();
     });
-    nextCard.addEventListener("click", pickCard);
-
-    function escapeHtml(s){ return s.replace(/[&<>"']/g, m => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m])); }
+    nextCard?.addEventListener("click", pickCard);
 
     renderList(); pickCard();
   }
 
-  /* --- Juego Dr Hermman (prototipo simple) --- */
+  /* -------------------------------------------
+   * Dr Hermman (juego-dr-hermman.html)
+   * ------------------------------------------- */
   const canvas = document.getElementById("drGame");
-  if (canvas) {
+  if (canvas && canvas.getContext) {
     const ctx = canvas.getContext("2d");
     const startBtn = document.getElementById("startGame");
     const scoreBox = document.getElementById("scoreBox");
+
+    if (!canvas.width) canvas.width = 900;
+    if (!canvas.height) canvas.height = Math.round(900 * 9/16);
 
     let W = canvas.width, H = canvas.height;
     let running = false;
@@ -214,7 +262,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function spawn(t){
       if (t - lastSpawn < 900) return;
       const x = 20 + Math.random()*(W-40);
-      const s = 1.2 + Math.random()*1.5;
+      const s = 1.2 + Math.random()*1.9;
       enemies.push({ x, y: -20, r: 12, dy: s });
       lastSpawn = t;
     }
@@ -222,7 +270,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function step(t){
       if (!running) return;
 
-      // move
+      // mover
       if (keys["ArrowLeft"])  player.x -= player.speed;
       if (keys["ArrowRight"]) player.x += player.speed;
       if (keys["ArrowUp"])    player.y -= player.speed;
@@ -238,61 +286,59 @@ document.addEventListener("DOMContentLoaded", () => {
       spawn(t);
       enemies.forEach(e=> e.y += e.dy);
 
-      // collisions
+      // colisiones
       for (let i=enemies.length-1; i>=0; i--){
         const e = enemies[i];
-        // hit player?
+        // golpe al jugador
         const dxp = e.x - player.x, dyp = e.y - player.y;
-        if (dxp*dxp + dyp*dyp < (e.r+player.r)*(e.r+player.r)){ // game over
+        if (dxp*dxp + dyp*dyp < (e.r+player.r)*(e.r+player.r)){
           running = false;
-          scoreBox.textContent = Puntos: ${score} · ¡Game Over!;
+          if (scoreBox) scoreBox.textContent = `Puntos: ${score} · ¡Game Over!`;
         }
-        // bullets
+        // balas
         for (let j=bullets.length-1; j>=0; j--){
           const b = bullets[j];
           const dxb = e.x - b.x, dyb = e.y - b.y;
           if (dxb*dxb + dyb*dyb < (e.r+6)*(e.r+6)){
             enemies.splice(i,1); bullets.splice(j,1); score++;
-            scoreBox.textContent = Puntos: ${score};
+            if (scoreBox) scoreBox.textContent = `Puntos: ${score}`;
             break;
           }
         }
         if (e.y > H+30) enemies.splice(i,1);
       }
 
-      // draw
+      // dibujar
       ctx.clearRect(0,0,W,H);
-      // player
+      // jugador
       ctx.fillStyle = "#6c5ce7";
       ctx.beginPath(); ctx.arc(player.x, player.y, player.r, 0, Math.PI*2); ctx.fill();
-      // bullets
+      // balas
       ctx.fillStyle = "#ffd54f";
       bullets.forEach(b=> { ctx.beginPath(); ctx.arc(b.x,b.y,4,0,Math.PI*2); ctx.fill(); });
-      // enemies
+      // enemigos
       ctx.fillStyle = "#ff8c00";
       enemies.forEach(e=> { ctx.beginPath(); ctx.arc(e.x,e.y,e.r,0,Math.PI*2); ctx.fill(); });
 
       requestAnimationFrame(step);
     }
 
-    startBtn.addEventListener("click", ()=>{
-      // reset
+    startBtn?.addEventListener("click", ()=>{
       bullets.length = 0; enemies.length = 0; score = 0;
       player.x = W/2; player.y = H-50; running = true;
-      scoreBox.textContent = "Puntos: 0";
+      if (scoreBox) scoreBox.textContent = "Puntos: 0";
       requestAnimationFrame(step);
     });
 
-    // Ajuste de tamaño en responsive (mantiene resolución del canvas)
-    const resize = () => {
-      // Visualmente ya es responsive por CSS; no cambiamos width/height internos
-      // para mantener la lógica simple.
+    // Mantén lógica de tamaño simple; visual responsive por CSS
+    window.addEventListener("resize", () => {
       W = canvas.width; H = canvas.height;
-    };
-    window.addEventListener("resize", resize);
+    });
   }
 
-  /* --- Footer año --- */
+  /* -------------------------------------------
+   * Footer: año actual
+   * ------------------------------------------- */
   const year = document.getElementById("year");
   if (year) year.textContent = new Date().getFullYear();
 });
