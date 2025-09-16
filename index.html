@@ -4,15 +4,13 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Ocelote Comunidad</title>
-  <meta name="description" content="Recursos para QFB: videos, flashcards, calculadora y avisos." />
+  <meta name="description" content="Página de inicio de Ocelote Comunidad: anuncios y accesos a secciones." />
   <link rel="canonical" href="https://luisen45.github.io/OceloteBlog.io/" />
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<!-- 👇 Fondo de 'index' -->
 <body class="index">
-
 <header class="site-header">
   <nav class="nav">
     <a class="brand" href="#inicio" aria-label="Inicio">
@@ -22,116 +20,119 @@
       <span></span><span></span><span></span>
     </button>
     <ul class="nav-menu" id="navMenu">
-      <li><a href="#inicio">Inicio</a></li>
+      <li><a href="#anuncios">Anuncios</a></li>
       <li><a href="videos.html">OceloteTV</a></li>
       <li><a href="app-de-estudio.html">OceloteApp</a></li>
       <li><a href="juego-dr-hermman.html">Dr Hermman</a></li>
     </ul>
   </nav>
 
+  <!-- Hero -->
   <section id="inicio" class="hero">
     <div class="overlay"></div>
     <div class="container">
-      <h1>Recursos para QFB con estilo</h1>
-      <p>Apoya tus clases con videos, tarjetas de estudio, herramientas y convocatorias.</p>
+      <h1>Aprende, crea y comparte</h1>
+      <p>Un hub para estudiantes QFB: contenido curado, juegos de estudio y proyectos de la comunidad.</p>
       <div class="actions">
-        <a class="btn primary" href="#videos">Ver videos</a>
-        <a class="btn ghost" href="#flashcards">Practicar</a>
+        <a class="btn primary" href="#anuncios">Ver anuncios</a>
+        <a class="btn ghost" href="#accesos">Explorar secciones</a>
       </div>
     </div>
   </section>
 </header>
 
 <main>
-  <!-- Destacados -->
-  <section class="features">
-    <div class="container grid-3">
-      <article class="card">
-        <h3>Videos</h3>
-        <p>Clases y explicaciones clave seleccionadas para tu semestre.</p>
-        <a class="link" href="#videos">Ir a Videos →</a>
+  <!-- ANUNCIOS (4 tarjetas) -->
+  <section id="anuncios" class="section">
+    <div class="container section-head">
+      <h2>Lo nuevo en OceloteApp</h2>
+      <p class="muted small">Cuatro escenas introductorias para conocer la app. Da clic para ampliar o leer más.</p>
+    </div>
+
+    <!-- Grid 2x2 (scroll-snap en móvil) -->
+    <div class="announcements">
+      <!-- Tarjeta 1 -->
+      <article class="story-card" data-title="¿Qué es OceloteApp?" data-link="app-de-estudio.html">
+        <img src="assets/anuncio-1.png" alt="Ocelote en la habitación presentando OceloteApp" loading="lazy">
+        <div class="story-info">
+          <h3>OceloteApp en 30 segundos</h3>
+          <p>Hecha por estudiantes para estudiantes: flashcards, memorama, rompecabezas y más.</p>
+        </div>
       </article>
-      <article class="card">
-        <h3>Flashcards</h3>
-        <p>Repasa definiciones y fórmulas con tarjetas interactivas.</p>
-        <a class="link" href="#flashcards">Abrir Flashcards →</a>
+
+      <!-- Tarjeta 2 -->
+      <article class="story-card" data-title="Aprendizaje activo" data-link="app-de-estudio.html#beneficios">
+        <img src="assets/anuncio-2.png" alt="Ocelote en el autobús usando la app con juegos" loading="lazy">
+        <div class="story-info">
+          <h3>Aprende jugando</h3>
+          <p>Memoria, práctica espaciada y codificación visual para recordar más en menos tiempo.</p>
+        </div>
       </article>
-      <article class="card">
-        <h3>Herramientas</h3>
-        <p>Calculadora rápida para operaciones y validaciones sencillas.</p>
-        <a class="link" href="#calculadora">Usar Calculadora →</a>
+
+      <!-- Tarjeta 3 -->
+      <article class="story-card" data-title="Modo sin conexión" data-link="app-de-estudio.html#offline">
+        <img src="assets/anuncio-3.png" alt="Ocelote en el parque estudiando sin conexión" loading="lazy">
+        <div class="story-info">
+          <h3>Funciona offline</h3>
+          <p>Tu material vive en tu dispositivo: rápido y disponible incluso sin señal.</p>
+        </div>
+      </article>
+
+      <!-- Tarjeta 4 -->
+      <article class="story-card" data-title="Comparte y colabora" data-link="app-de-estudio.html#colaborativo">
+        <img src="assets/anuncio-4.png" alt="Dos ocelotes compartiendo barajas y paquetes" loading="lazy">
+        <div class="story-info">
+          <h3>Biblioteca colaborativa</h3>
+          <p>Comparte barajas y descarga paquetes verificados. La comunidad hace más fuerte el estudio.</p>
+        </div>
       </article>
     </div>
   </section>
 
-  <!-- Videos -->
-  <section id="videos" class="section">
-    <div class="container">
-      <h2>Videos</h2>
-      <div class="video-grid">
-        <iframe title="Video 1" src="https://www.youtube.com/embed/VIDEO_ID_1" loading="lazy" allowfullscreen></iframe>
-        <iframe title="Video 2" src="https://www.youtube.com/embed/VIDEO_ID_2" loading="lazy" allowfullscreen></iframe>
-      </div>
+  <!-- ACCESOS GRANDES -->
+  <section id="accesos" class="section">
+    <div class="container section-head">
+      <h2>Explora secciones</h2>
+    </div>
+    <div class="links-grid">
+      <a class="link-card" href="app-de-estudio.html">
+        <div class="icon">📚</div>
+        <div>
+          <h3>OceloteApp</h3>
+          <p>Herramientas para estudiar rápido y bien.</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="link-card" href="videos.html">
+        <div class="icon">📺</div>
+        <div>
+          <h3>OceloteTV</h3>
+          <p>Clases y explicaciones clave seleccionadas.</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
+      <a class="link-card" href="juego-dr-hermman.html">
+        <div class="icon">🕹️</div>
+        <div>
+          <h3>Dr Hermman</h3>
+          <p>Proyecto de juego retro y ciencia divertida.</p>
+        </div>
+        <span class="arrow">→</span>
+      </a>
     </div>
   </section>
 
-  <!-- Flashcards -->
-  <section id="flashcards" class="section">
-    <div class="container">
-      <h2>Flashcards</h2>
-      <div class="flashcards">
-        <div class="flashcard" tabindex="0" aria-expanded="false">
-          <div class="question">¿Cuál es la capital de Francia?</div>
-          <div class="answer">París</div>
-        </div>
-        <div class="flashcard" tabindex="0" aria-expanded="false">
-          <div class="question">¿Fórmula del agua?</div>
-          <div class="answer">H₂O</div>
-        </div>
-        <div class="flashcard" tabindex="0" aria-expanded="false">
-          <div class="question">¿Quién pintó la Mona Lisa?</div>
-          <div class="answer">Leonardo da Vinci</div>
-        </div>
+  <!-- Mini about -->
+  <section class="section about">
+    <div class="container about-wrap">
+      <div>
+        <h2>¿Qué es Ocelote Comunidad?</h2>
+        <p>
+          Un proyecto estudiantil inspirado en la FES Zaragoza para organizar recursos de aprendizaje,
+          impulsar la colaboración y acercar la ciencia con diseño fresco.
+        </p>
       </div>
-    </div>
-  </section>
-
-  <!-- Calculadora -->
-  <section id="calculadora" class="section">
-    <div class="container">
-      <h2>Calculadora</h2>
-      <div class="calc">
-        <input type="text" id="display" inputmode="decimal" aria-label="Pantalla de cálculo" />
-        <div class="keys">
-          <button data-k="7">7</button><button data-k="8">8</button><button data-k="9">9</button><button data-k="/">/</button>
-          <button data-k="4">4</button><button data-k="5">5</button><button data-k="6">6</button><button data-k="*">*</button>
-          <button data-k="1">1</button><button data-k="2">2</button><button data-k="3">3</button><button data-k="-">-</button>
-          <button data-k="0">0</button><button data-k=".">.</button><button id="eq">=</button><button data-k="+">+</button>
-          <button id="clear" class="full">C</button>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Concursos -->
-  <section id="concursos" class="section">
-    <div class="container">
-      <h2>Concursos</h2>
-      <p>Participa y gana. Te avisamos por correo si resultas seleccionado.</p>
-      <form id="contestForm" novalidate>
-        <label for="nombre">Nombre</label>
-        <input id="nombre" name="nombre" required />
-        <label for="email">Email</label>
-        <input id="email" name="email" type="email" required />
-        <label for="concurso">Elige un concurso</label>
-        <select id="concurso" name="concurso">
-          <option value="concurso1">Concurso 1</option>
-          <option value="concurso2">Concurso 2</option>
-          <option value="concurso3">Concurso 3</option>
-        </select>
-        <button class="btn primary" type="submit">Inscribirse</button>
-        <p id="formMsg" class="form-msg" role="status" aria-live="polite"></p>
-      </form>
+      <a class="btn subtle" href="#anuncios">Ver anuncios</a>
     </div>
   </section>
 </main>
