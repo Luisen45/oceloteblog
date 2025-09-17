@@ -3,75 +3,320 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>App de Estudio — Ocelote</title>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+  <title>OceloteApp — Ocelote Comunidad</title>
+
+  <!-- Tipografía + tu hoja de estilo global -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
+
+  <!-- ===== CSS específico de esta página ===== -->
+  <style>
+    .app .container{padding-top:.25rem}
+
+    /* Scrim global SOLO para esta página: mejora legibilidad del fondo */
+    body.app{ position: relative; }
+    body.app::before{
+      content:""; position: fixed; inset:0;
+      background: rgba(0,0,0,.30); /* ajusta 0.25–0.40 a gusto */
+      pointer-events:none; z-index:-1;
+    }
+
+    /* Tarjetas “glass” */
+    .glass-card{
+      position: relative;
+      background: rgba(255,255,255,.06);
+      border: 1px solid rgba(255,255,255,.10);
+      border-radius: 18px;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 10px 24px rgba(0,0,0,.28);
+      color:#fff;
+    }
+    .glass-strong{
+      background: linear-gradient(180deg, rgba(8,16,28,.78), rgba(8,16,28,.62));
+      border-color: rgba(255,255,255,.14);
+      box-shadow: 0 14px 32px rgba(0,0,0,.35);
+    }
+    /* texto dentro de tarjetas */
+    .glass-card h1, .glass-card h2, .glass-card h3, .glass-card p, .glass-card li{
+      text-shadow: 0 2px 12px rgba(0,0,0,.75);
+    }
+    .app .container > .muted{
+      text-shadow: 0 2px 12px rgba(0,0,0,.85);
+      color:#ebf2ff;
+    }
+
+    /* ============ GRID (12 columnas) ============ */
+    .app-grid{
+      display:grid;
+      column-gap: 1rem;
+      row-gap: .85rem;
+      grid-template-columns: repeat(12, 1fr);
+      /* INFO arriba (full width), luego TUTORIAL (full width), después DRIVE+FILES */
+      grid-template-areas:
+        "info info info info info info info info info info info info"
+        "tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial"
+        "drive drive drive drive files files files files files files files files";
+      margin:1.1rem 0;
+      align-items:start;
+    }
+    .grid-info{grid-area:info}
+    .grid-tutorial{grid-area:tutorial}
+    .grid-drive{grid-area:drive}
+    .grid-files{grid-area:files}
+
+    /* Móvil / tablet: una columna */
+    @media (max-width: 960px){
+      .app-grid{
+        grid-template-columns: 1fr;
+        grid-template-areas:
+          "info"
+          "tutorial"
+          "drive"
+          "files";
+      }
+    }
+
+    /* ============ INFO (fila 1, 12/12) ============ */
+    .info-card{
+      padding:1rem 1.2rem 1.1rem;
+    }
+    .info-card h2{
+      margin:.1rem 0 .45rem;
+      font-weight:800;
+      font-size: clamp(1.3rem, 2.6vw, 1.7rem);
+    }
+    .info-card p{ margin:0; color:#e9efff }
+
+    .eyebrow{
+      font-size:.85rem; letter-spacing:.14em; text-transform:uppercase;
+      color:#f7faff; opacity:.95; margin:0 0 .35rem; font-weight:800;
+      text-shadow:0 1px 8px rgba(0,0,0,.6);
+    }
+    .muted-strong{ color:#e3eaff }
+
+    /* ============ TUTORIAL (fila 2, 12/12) ============ */
+    .tutorial-card{ overflow:hidden; padding:0 }
+    .tutorial-header{
+      padding:.9rem 1.2rem .55rem;
+      border-bottom:1px solid rgba(255,255,255,.08);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
+    }
+    .tutorial-header .lead{ margin:.2rem 0 0; color:#e9efff; }
+    .tutorial-body{
+      display:grid;
+      grid-template-columns: 1fr 1.2fr;      /* lateral / video */
+      gap:.95rem;
+      padding:.95rem 1.2rem 1.1rem;
+      align-items:start;
+    }
+    .tutorial-side h3{ margin:.2rem 0 .4rem; font-weight:800 }
+    .tutorial-side p, .tutorial-side li{ color:#e9efff }
+    .tutorial-side ul{ margin:.25rem 0 0; padding-left:1.1rem }
+    .tutorial-side li{ margin:.15rem 0 }
+
+    .tutorial-video .video-wrap{
+      position:relative; width:100%; aspect-ratio:16/9; border-radius:14px; overflow:hidden;
+      box-shadow:0 14px 30px rgba(0,0,0,.35);
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.35);
+    }
+    .tutorial-video iframe{ position:absolute; inset:0; width:100%; height:100%; border:0 }
+    .tutorial-caption{ margin:.5rem 0 0; color:#ccdaff; font-size:.95rem }
+
+    @media (max-width: 960px){
+      .tutorial-body{ grid-template-columns:1fr }
+    }
+
+    /* ============ DRIVE (fila 3 izquierda) ============ */
+    .drive-card{
+      padding:1.05rem 1.1rem;
+      display:grid; grid-template-columns:auto 1fr; gap:.85rem; align-items:center;
+    }
+    .drive-card .icon{
+      width:42px; height:42px; border-radius:12px; display:grid; place-items:center;
+      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.04));
+      border:1px solid rgba(255,255,255,.14);
+    }
+    .drive-card .title{ margin:0; font-weight:800 }
+    .drive-card .desc{ margin:.15rem 0 .5rem; color:#d8e3ff }
+    .drive-card .btn-cta{
+      display:inline-block; padding:.6rem .9rem; border-radius:12px; text-decoration:none; font-weight:700;
+      color:#fff; background:var(--brand); border:1px solid rgba(255,255,255,.14); transition:.2s ease;
+      box-shadow:0 8px 18px rgba(0,0,0,.4);
+    }
+    .drive-card .btn-cta:hover{ transform:translateY(-2px); background:#5a47c7 }
+
+    /* ============ FILES (fila 3 derecha) ============ */
+    .files-card{ padding:1.05rem 1.1rem }
+    .file-grid{ display:grid; gap:.6rem; grid-template-columns:1fr }
+    .file-item{
+      display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:.7rem;
+      padding:.6rem .75rem; border-radius:12px;
+      background:rgba(8,16,28,.45);
+      border:1px solid rgba(255,255,255,.16);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+    }
+    .file-item .ficon{
+      width:34px; height:34px; border-radius:10px; display:grid; place-items:center;
+      background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18);
+    }
+    .file-item .meta{ line-height:1.15 }
+    .file-item small{ color:#cbd6f7 }
+    .file-item a{
+      text-decoration:none; font-weight:700; color:var(--warn);
+      border-bottom:1px solid rgba(255,213,79,.45)
+    }
+    .file-item a:hover{ border-bottom-color:rgba(255,213,79,.95) }
+  </style>
 </head>
+
 <body class="app">
+  <header class="site-header">
+    <nav class="nav">
+      <a class="brand" href="index.html" aria-label="Volver a inicio">← Ocelote Comunidad</a>
+      <ul class="nav-menu" id="navMenu">
+        <li><a href="videos.html">OceloteTV</a></li>
+        <li><a href="app-de-estudio.html" aria-current="page">OceloteApp</a></li>
+        <li><a href="juego-dr-hermman.html">Dr Hermman</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+  </header>
 
-<header class="site-header">
-  <nav class="nav">
-    <a class="brand" href="index.html" aria-label="Volver a inicio">← Ocelote Comunidad</a>
-    <ul class="nav-menu" id="navMenu">
-      <li><a href="videos.html">OceloteTV</a></li>
-      <li><a href="app-de-estudio.html" aria-current="page">OceloteApp</a></li>
-      <li><a href="juego-dr-hermman.html">Dr Hermman</a></li>
-    </ul>
-    <button class="nav-toggle" id="navToggle" aria-expanded="false" aria-controls="navMenu">
-      <span></span><span></span><span></span>
-    </button>
-  </nav>
-</header>
+  <main class="section">
+    <div class="container">
+      <h1>OceloteApp</h1>
+      <p class="muted">
+        Aplicación educativa gratuita de la FES Zaragoza. Convierte temas en flashcards, memoramas y rompecabezas de esquemas,
+        con retos que hacen el aprendizaje activo y dinámico. Material creado y verificado por Ocelote Comunidad.
+        ¿Primera vez? Revisa los tutoriales y empieza en minutos.
+      </p>
 
-<main class="section">
-  <div class="container">
-    <h1>App de Estudio</h1>
-    <p class="muted">Crea tus propias flashcards y practica con un modo aleatorio. Todo se guarda en tu navegador.</p>
+      <!-- ========================= GRID PRINCIPAL ========================= -->
+      <section class="app-grid">
 
-    <div id="studyApp" class="study-app card">
-      <!-- Añadir tarjetas -->
-      <form id="addCardForm" class="add-card">
-        <div>
-          <label for="qInput">Pregunta</label>
-          <input id="qInput" required placeholder="Ej. ¿Qué es la FEUM?" />
-        </div>
-        <div>
-          <label for="aInput">Respuesta</label>
-          <input id="aInput" required placeholder="Ej. Farmacopea de los Estados Unidos Mexicanos" />
-        </div>
-        <button class="btn primary" type="submit">Agregar</button>
-        <button class="btn ghost" id="clearAll" type="button" title="Borrar todas las tarjetas">Borrar todo</button>
-      </form>
+        <!-- INFO (fila 1, 12/12) -->
+        <article class="glass-card glass-strong info-card grid-info">
+          <p class="eyebrow">Sobre la app</p>
+          <h2>Aprende rápido, jugando</h2>
+          <p>
+            OceloteApp organiza <span class="muted-strong">escenas breves</span>, retos y quizzes para fijar conceptos en minutos.
+            Diseñada por y para estudiantes QFB de la <strong>FES Zaragoza</strong>, con contenido curado por la
+            <strong>Comunidad Ocelote</strong>.
+          </p>
+        </article>
 
-      <!-- Lista -->
-      <h3>Mis tarjetas</h3>
-      <div id="cardList" class="cards-list"></div>
+        <!-- TUTORIAL (fila 2, 12/12) -->
+        <section class="glass-card glass-strong tutorial-card grid-tutorial">
+          <div class="tutorial-header">
+            <p class="eyebrow">Tutorial</p>
+            <p class="lead">
+              Mira el video y sigue estas indicaciones para instalar y usar OceloteApp.
+              En minutos tendrás tus escenas, retos y quizzes funcionando.
+            </p>
+          </div>
 
-      <!-- Práctica -->
-      <div class="practice">
-        <h3>Práctica</h3>
-        <div id="practiceCard" class="practice-card">
-          <div class="pc-q">—</div>
-          <div class="pc-a">—</div>
-        </div>
-        <div class="practice-actions">
-          <button class="btn" id="showAnswer" type="button">Mostrar respuesta</button>
-          <button class="btn" id="markRight" type="button">✔ Correcta</button>
-          <button class="btn" id="markWrong" type="button">✖ Incorrecta</button>
-          <button class="btn primary" id="nextCard" type="button">Siguiente</button>
-        </div>
-        <p id="practiceStats" class="muted small"></p>
-      </div>
+          <div class="tutorial-body">
+            <aside class="tutorial-side">
+              <h3>Cómo usar OceloteApp</h3>
+              <p>1) Descarga la app desde la carpeta de Drive. 2) Instala según tu sistema. 3) Importa los paquetes de contenido y empieza a jugar/estudiar.</p>
+              <ul>
+                <li>Requisitos: Android 8+ o emulador.</li>
+                <li>Contenido: escenas introductorias, retos y quizzes.</li>
+                <li>Soporte: comunidad Ocelote en actualización continua.</li>
+              </ul>
+            </aside>
+
+            <div class="tutorial-video">
+              <div class="video-wrap">
+                <!-- Reemplaza VIDEO_ID o usa link de Drive en preview -->
+                <iframe
+                  src="https://www.youtube.com/embed/VIDEO_ID"
+                  title="Tutorial OceloteApp"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowfullscreen
+                ></iframe>
+              </div>
+              <p class="tutorial-caption">Instalación, importación de paquetes y primeros pasos.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- DRIVE (fila 3, 4/12) -->
+        <article class="glass-card glass-strong drive-card grid-drive">
+          <div class="icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 7.5a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7.5Z" stroke="white" opacity=".85" stroke-width="1.4" fill="rgba(255,255,255,.08)"/>
+            </svg>
+          </div>
+          <div>
+            <h3 class="title">Descarga desde Google Drive</h3>
+            <p class="desc">APK / instalador y paquetes de contenido.</p>
+            <a class="btn-cta" href="https://drive.google.com/drive/folders/TU_CARPETA" target="_blank" rel="noopener">
+              Abrir carpeta de Drive
+            </a>
+          </div>
+        </article>
+
+        <!-- FILES (fila 3, 8/12) -->
+        <article class="glass-card glass-strong files-card grid-files">
+          <p class="eyebrow">Material adicional</p>
+          <div class="file-grid">
+            <div class="file-item">
+              <div class="ficon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <rect x="4" y="3" width="16" height="18" rx="2" stroke="white" opacity=".85"/>
+                  <path d="M10 6h4M10 9h4M10 12h4" stroke="white" opacity=".85"/>
+                </svg>
+              </div>
+              <div class="meta">
+                <strong>Paquete: Esquemas 01</strong><br>
+                <small>.zip · 18 MB</small>
+              </div>
+              <a href="https://drive.google.com/file/d/TU_ARCHIVO" target="_blank" rel="noopener">Descargar</a>
+            </div>
+
+            <div class="file-item">
+              <div class="ficon" aria-hidden="true">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                  <path d="M3 7.5a2 2 0 0 1 2-2h4l2 2h8a2 2 0 0 1 2 2v7.5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7.5Z" stroke="white" opacity=".85" fill="rgba(255,255,255,.06)"/>
+                </svg>
+              </div>
+              <div class="meta">
+                <strong>Carpeta: Guías y PDFs</strong><br>
+                <small>12 archivos</small>
+              </div>
+              <a href="https://drive.google.com/drive/folders/TU_CARPETA_2" target="_blank" rel="noopener">Abrir</a>
+            </div>
+          </div>
+        </article>
+
+      </section><!-- /app-grid -->
     </div>
-  </div>
-</main>
+  </main>
 
-<footer class="site-footer">
-  <div class="container">
-    <p>© <span id="year"></span> Ocelote Comunidad — FES Zaragoza</p>
-  </div>
-</footer>
+  <footer class="site-footer">
+    <div class="container">
+      <p>© <span id="year"></span> Ocelote Comunidad — FES Zaragoza</p>
+    </div>
+  </footer>
 
-<script src="script.js" defer></script>
+  <script>
+    // Año automático
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Toggle del menú móvil (si ya lo tienes en script.js, puedes quitar esto)
+    const navToggle = document.getElementById('navToggle');
+    const navMenu   = document.getElementById('navMenu');
+    if(navToggle && navMenu){
+      navToggle.addEventListener('click', ()=>{
+        const show = navMenu.classList.toggle('show');
+        navToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
+      });
+    }
+  </script>
 </body>
 </html>

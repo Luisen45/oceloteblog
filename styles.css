@@ -5,11 +5,11 @@
   --brand:#6c5ce7;      /* morado */
   --accent:#ff8c00;     /* naranja */
   --warn:#ffd54f;       /* amarillo */
-  --card:#0f2f55;
-  --glass:rgba(10,37,64,.6);
+  --card:#0f2f57;
+  --glass:rgba(24, 109, 214, 0.6);
 }
 
-/* ========== BASE ==========\*/
+/* ========== BASE ==========*/
 *{box-sizing:border-box}
 html,body{height:100%}
 body{
@@ -23,7 +23,7 @@ body{
 .muted{color:var(--muted)}
 .small{font-size:.9rem}
 
-/* ========== NAV ==========\*/
+/* ========== NAV ==========*/
 .site-header{position:relative}
 .nav{
   position:sticky; top:0; z-index:1000;
@@ -39,35 +39,63 @@ body{
 .nav-menu a:hover{color:var(--warn)}
 .nav-toggle{display:none; width:42px; height:42px; border:1px solid rgba(255,255,255,.15);
   background:transparent; border-radius:10px; cursor:pointer;}
-.nav-toggle span{display:block; height:2px; background:#fff; margin:8px 9px}
+.nav-toggle span{display:block; height:2px; background:#ffffff; margin:8px 9px}
 
-/* ========== HERO (inicio) ==========\*/
+/* ========== HERO (inicio) ==========*/
+/* Mejora de legibilidad: overlay más oscuro con scrim,
+   sombras en texto y botones con mayor contraste */
 .hero{
   position:relative;
-  padding:2rem 0 2rem;
+  padding:clamp(1rem, 5vw, 2rem) 0;
   min-height:25vh;
   display:flex; align-items:center;
+  color:#fff;
 }
 .hero .overlay{
   position:absolute; inset:0;
+  /* scrim oscuro + toque de color; asegura contraste alto con el fondo */
   background:
-    radial-gradient(800px 400px at 90% -10%, rgba(108,92,231,.35), transparent 70%),
-    linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0,0,0,.55));
+    linear-gradient(180deg,
+      rgba(0,0,0,.35) 0%,
+      rgba(0,0,0,.45) 35%,
+      rgba(0,0,0,.58) 70%,
+      rgba(0,0,0,.66) 100%),
+    radial-gradient(1000px 500px at 85% -10%, rgba(10, 100, 236, 0.28), transparent 70%);
   pointer-events:none;
 }
-.hero h1{font-size: clamp(1.8rem, 2.8vw, 3rem); margin:0 0 .5rem}
-.hero p{color:var(--muted); margin:0 0 1.25rem}
+.hero .container{position:relative; z-index:1}
+.hero h1{
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+  line-height:1.05;
+  font-weight:800;
+  margin:0 0 .6rem;
+  color:#ffffff;
+  text-shadow: 0 2px 12px rgba(0,0,0,.85);
+  letter-spacing:.2px;
+}
+.hero p{
+  margin:0 0 1.25rem;
+  color:#f1f4ff;
+  max-width: 70ch;
+  font-size: clamp(1rem, 1.4vw, 1.25rem);
+  text-shadow: 0 1px 10px rgba(0,0,0,.7);
+}
 .actions{display:flex; gap:.75rem; flex-wrap:wrap}
 .btn{
-  display:inline-block; padding:.75rem 1rem; border-radius:12px;
-  text-decoration:none; font-weight:600; border:1px solid transparent; transition:.2s ease;
+  display:inline-block; padding:.8rem 1.05rem; border-radius:12px;
+  text-decoration:none; font-weight:700; border:1px solid transparent; transition:.2s ease;
 }
-.btn.primary{background:var(--brand); color:#fff}
-.btn.ghost{background:transparent; color:#fff; border-color:rgba(255,255,255,.25)}
+.btn.primary{
+  background:var(--brand); color:#fff;
+  box-shadow: 0 6px 16px rgba(0,0,0,.45);
+}
+.btn.primary:hover{background:#5a47c7; transform:translateY(-2px)}
+.btn.ghost{background:rgba(255,255,255,.08); color:#fff; border-color:rgba(255,255,255,.25)}
+.btn.ghost:hover{background:rgba(255,255,255,.12)}
 .btn.subtle{background:rgba(255,255,255,.06); color:#fff; border-color:rgba(255,255,255,.12)}
-.btn:hover{transform:translateY(-1px)}
+.btn.subtle:hover{background:rgba(255,255,255,.1)}
 
-/* ========== INICIO → Anuncios (4 tarjetas) ==========\*/
+/* ========== INICIO → Anuncios (4 tarjetas) ==========*/
 .section-head h2{margin:0 0 .25rem}
 .section-head p{margin:0}
 
@@ -98,14 +126,14 @@ body{
   .announcements > *{scroll-snap-align:center}
 }
 
-/* ========== INICIO → Accesos grandes ==========\*/
+/* ========== INICIO → Accesos grandes ==========*/
 .links-grid{
   display:grid; gap:1rem; grid-template-columns: repeat(3, 1fr);
   width:min(1100px, 100%); margin:1rem auto 0;
 }
 .link-card{
   display:grid; grid-template-columns:auto 1fr auto; align-items:center; gap:1rem;
-  background:rgba(255,255,255,.04); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem 1.1rem;
+  background:rgba(239, 204, 31, 0.4); border:1px solid rgba(255,255,255,.08); border-radius:16px; padding:1rem 1.1rem;
   transition:.25s; backdrop-filter: blur(6px); color:#fff; text-decoration:none;
 }
 .link-card:hover{transform:translateY(-2px); background:rgba(255,255,255,.06)}
@@ -118,7 +146,7 @@ body{
   .links-grid{grid-template-columns:1fr}
 }
 
-/* ========== INICIO → Mini about ==========\*/
+/* ========== INICIO → Mini about ==========*/
 .about-wrap{
   display:flex; align-items:center; justify-content:space-between; gap:1rem;
   background:linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.02));
@@ -130,7 +158,7 @@ body{
   .about-wrap{flex-direction:column; align-items:flex-start}
 }
 
-/* ========== OTRAS SECCIONES (NO TOCAR ESTRUCTURA) ==========\*/
+/* ========== OTRAS SECCIONES (NO TOCAR ESTRUCTURA) ==========*/
 
 /* Features (si se usan en otras páginas) */
 .features{padding:2.5rem 0}
@@ -179,7 +207,7 @@ body{
 #drGame{width:100%; height:auto; border:1px solid rgba(255,255,255,.12); border-radius:12px; background:#061628}
 .game-controls{display:flex; gap:.75rem; align-items:center}
 
-/* ========== BACKGROUNDS POR PÁGINA ==========\*/
+/* ========== BACKGROUNDS POR PÁGINA ==========*/
 body.index{
   background-image: url("./assets/fondoiniciogris.png");
   background-size: cover; background-position: center; background-attachment: fixed;
@@ -193,15 +221,15 @@ body.app{
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 body.juego{
-  background-image: url('https://i.imgur.com/ulaCykE.jpg'); /* escritorio */
+  background-image: url("./assets/fondodr.png"); /* escritorio */
   background-size: cover; background-position: center; background-attachment: fixed;
 }
 
-/* ========== FOOTER ==========\*/
+/* ========== FOOTER ==========*/
 .site-footer{border-top:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.03)}
 .site-footer .container{padding:1.25rem 1rem; text-align:center}
 
-/* ========== RESPONSIVE ==========\*/
+/* ========== RESPONSIVE ==========*/
 @media (max-width: 960px){
   .grid-3{grid-template-columns:1fr}
   .video-grid{grid-template-columns:1fr}
@@ -216,12 +244,78 @@ body.juego{
   .nav-menu.show{display:flex}
 
   .add-card{grid-template-columns:1fr; align-items:stretch}
+
+  /* títulos un poco más pequeños para móviles */
+  .hero h1{font-size: clamp(1.8rem, 5.5vw, 2.6rem)}
+  .hero p{font-size: clamp(.95rem, 1.2vw, 1.1rem)}
 }
 
 /* Juego: fondo móvil */
 @media (max-width: 960px), (orientation: portrait){
   body.juego{
-    background-image: url('https://i.imgur.com/GracwSj.jpg'); /* móvil */
+    background-image: url("./assets/fondodrmovil.png"); /* móvil */
     background-attachment: scroll;
   }
+}
+/* === Mejora mínima de legibilidad (sin alterar layout) === */
+
+/* Encabezado y texto de secciones sobre fondos con imagen */
+.index .section-head h2{
+  color:#fff; /* asegura blanco puro */
+  text-shadow: 0 2px 14px rgba(0,0,0,.75);
+  -webkit-text-stroke: .35px rgba(0,0,0,.35); /* contorno sutil (opcional) */
+}
+.index .section-head p{
+  color:#f1f4ff;
+  text-shadow: 0 1px 10px rgba(0,0,0,.65);
+}
+
+/* Textos superpuestos en tarjetas con imagen (por si acaso) */
+.story-info h3,
+.story-info p{
+  text-shadow: 0 1px 10px rgba(0,0,0,.6);
+}
+
+/* Botón principal: un toque más de contraste sin cambiar tamaño */
+.btn.primary{
+  box-shadow: 0 4px 12px rgba(0,0,0,.45);
+}
+
+/* Si tu H1/Hero ya se ve bien, ignora esto.
+   Si aún se pierde, deja SOLO estas dos líneas: */
+.hero h1{ text-shadow: 0 2px 12px rgba(0,0,0,.8) }
+.hero p { text-shadow: 0 1px 10px rgba(0,0,0,.7) }
+/* ===== Legibilidad global SIN cambiar layout ===== */
+
+/* 1) Oscurece sutilmente el fondo de la portada (mantiene el arte visible) */
+body.index{
+  /* ya tienes la imagen; añadimos un color que se mezcla con multiply */
+  background-color: rgba(0,0,0,.38);   /* sube/baja este .38 según necesites */
+  background-blend-mode: multiply;     /* oscurece solo el fondo, no el contenido */
+}
+
+/* 2) Títulos muy nítidos en cualquier zona del fondo */
+h1, h2, h3, h4, h5, h6{
+  color:#fff;
+  text-shadow:
+    0 2px 14px rgba(0,0,0,.85),   /* halo fuerte para fondos claros */
+    0 0 2px rgba(0,0,0,.65);      /* refuerzo de borde */
+  -webkit-text-stroke: .45px rgba(0,0,0,.35); /* contorno sutil (Chrome/Edge) */
+}
+
+/* 3) Párrafos más legibles sin “cajas” */
+p{
+  color:#f2f6ff;
+  text-shadow: 0 1px 12px rgba(0,0,0,.8);
+  -webkit-text-stroke: .3px rgba(0,0,0,.28);
+}
+
+/* 4) Por si algún texto dentro de .section-head seguía perdiéndose */
+.section-head h2, .section-head p{
+  text-shadow: 0 2px 14px rgba(0,0,0,.85);
+}
+
+/* 5) Mantén contraste en botones sobre fondos claros */
+.btn.primary{
+  box-shadow: 0 6px 16px rgba(0,0,0,.55);
 }
