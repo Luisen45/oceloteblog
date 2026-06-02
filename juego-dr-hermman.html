@@ -259,21 +259,6 @@
     </div>
   </footer>
 
-  <script>
-    // Año automático
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Toggle del menú móvil (si ya lo tienes en script.js, quita esto)
-    const navToggle = document.getElementById('navToggle');
-    const navMenu   = document.getElementById('navMenu');
-    if(navToggle && navMenu){
-      navToggle.addEventListener('click', ()=>{
-        const show = navMenu.classList.toggle('show');
-        navToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
-      });
-    }
-  </script>
-
   <!-- Tu lógica del juego (usa los mismos IDs: #drGame, #startGame, #scoreBox) -->
   <script src="script.js" defer></script>
 </body>
