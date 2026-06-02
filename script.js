@@ -25,6 +25,12 @@ document.addEventListener("DOMContentLoaded", () => {
           }
           navMenu.classList.remove("show");
           navToggle.setAttribute("aria-expanded", "false");
+        } else {
+          // Si es un enlace normal (a otra página o recarga), forzamos el cierre del menú en móviles
+          if (window.innerWidth <= 960) {
+            navMenu.classList.remove("show");
+            navToggle.setAttribute("aria-expanded", "false");
+          }
         }
       });
     });
