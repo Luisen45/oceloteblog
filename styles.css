@@ -220,6 +220,10 @@ body.app{
   background-image: url("./assets/fondooceloteapp.png");
   background-size: cover; background-position: center; background-attachment: fixed;
 }
+body.microbiobezas{
+  background-image: url("./assets/fondomicrobiobezas.png");
+  background-size: cover; background-position: center; background-attachment: fixed;
+}
 body.juego{
   background-image: url("./assets/fondodr.png"); /* escritorio */
   background-size: cover; background-position: center; background-attachment: fixed;
