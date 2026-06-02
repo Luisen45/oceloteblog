@@ -35,7 +35,7 @@
       <p>Un espacio interactivo diseñado para la comunidad QFB: desde flashcards técnicas y puzles microbiológicos hasta difusión científica de nivel universitario.</p>
       <div class="actions">
         <a class="btn primary" href="#anuncios">Ver anuncios</a>
-        <a class="btn ghost" href="#accesos">Explorar secciones</a>
+        <a class="btn ghost" href="#sugerencias">Enviar sugerencias</a>
       </div>
     </div>
   </section>
@@ -89,36 +89,30 @@
     </div>
   </section>
 
-  <!-- ACCESOS GRANDES -->
-  <section id="accesos" class="section">
-    <div class="container section-head">
-      <h2>Explora secciones</h2>
-    </div>
-    <div class="links-grid">
-      <a class="link-card" href="app-de-estudio.html">
-        <div class="icon">📚</div>
-        <div>
-          <h3>OceloteApp</h3>
-          <p>Herramientas para estudiar rápido y bien.</p>
+  <!-- SUGERENCIAS -->
+  <section id="sugerencias" class="section">
+    <div class="container about-wrap form-wrap">
+      <div class="form-header">
+        <h2>¿Tienes sugerencias?</h2>
+        <p>Ayúdame a mejorar el sitio. Déjame tus comentarios aquí abajo y me llegarán directamente por correo.</p>
+      </div>
+      <form action="https://formsubmit.co/ocelote.podcast01976@gmail.com" method="POST" class="sugerencias-form">
+        <!-- Configuraciones de FormSubmit -->
+        <input type="hidden" name="_subject" value="Nueva sugerencia desde Ocelote Comunidad">
+        <input type="hidden" name="_captcha" value="false">
+        
+        <div class="form-group">
+          <label for="email">Tu correo electrónico</label>
+          <input type="email" id="email" name="email" required placeholder="ejemplo@correo.com">
         </div>
-        <span class="arrow">→</span>
-      </a>
-      <a class="link-card" href="videos.html">
-        <div class="icon">📺</div>
-        <div>
-          <h3>OceloteTV</h3>
-          <p>Clases y explicaciones clave seleccionadas.</p>
+        
+        <div class="form-group">
+          <label for="mensaje">Tu sugerencia</label>
+          <textarea id="mensaje" name="mensaje" rows="4" required placeholder="Escribe tu comentario o idea aquí..."></textarea>
         </div>
-        <span class="arrow">→</span>
-      </a>
-      <a class="link-card" href="juego-dr-hermman.html">
-        <div class="icon">🕹️</div>
-        <div>
-          <h3>Dr Hermman</h3>
-          <p>Proyecto de juego retro y ciencia divertida.</p>
-        </div>
-        <span class="arrow">→</span>
-      </a>
+        
+        <button type="submit" class="btn primary">🚀 Enviar sugerencia</button>
+      </form>
     </div>
   </section>
 

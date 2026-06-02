@@ -321,3 +321,59 @@ p{
 .btn.primary{
   box-shadow: 0 6px 16px rgba(0,0,0,.55);
 }
+
+/* ========== FORMULARIO DE SUGERENCIAS ========== */
+.form-wrap {
+  flex-direction: column;
+  align-items: center;
+  padding: 2.5rem 1.25rem;
+}
+.form-header {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+.sugerencias-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  width: 100%;
+  max-width: 500px;
+}
+.form-group {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+}
+.form-group label {
+  font-size: 0.95rem;
+  margin-bottom: 0.4rem;
+  color: #e9efff;
+  font-weight: 500;
+}
+.form-group input,
+.form-group textarea {
+  width: 100%;
+  padding: 0.85rem;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,.15);
+  background: rgba(8,16,28,.4);
+  color: #fff;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+.form-group input:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: var(--brand);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.25);
+}
+.sugerencias-form .btn {
+  width: 100%;
+  text-align: center;
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 1.05rem;
+  border: none;
+  margin-top: 0.5rem;
+}
