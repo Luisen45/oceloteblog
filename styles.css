@@ -183,19 +183,36 @@ body{
   background:linear-gradient(180deg, rgba(8, 16, 28, 0.78), rgba(8, 16, 28, 0.62));
   border:1px solid rgba(255,255,255,.14); border-radius:18px;
   box-shadow:0 14px 32px rgba(0,0,0,.35);
+  min-width: 0;
 }
 .video-wrap{
   position:relative;
   width:100%;
-  padding-bottom: 56.25%; /* Relación de aspecto 16:9 100% estable */
-  height: 0;
+  aspect-ratio: 16 / 9;
   background:#000;
   border-radius: 17px 17px 0 0;
+  overflow: hidden;
 }
+
+/* Ajuste de altura para reproductores de Google Drive en OceloteTV */
+.video-item .video-wrap {
+  /* Anulamos las proporciones simples */
+  aspect-ratio: auto;
+  height: 0;
+  /* 56.25% mantiene el video 16:9 exacto.
+     Los +85px absorben la altura fija de las barras negras de Drive en PC. */
+  padding-bottom: calc(56.25% + 85px);
+}
+@media (max-width: 960px) {
+  .video-item .video-wrap {
+    /* En móviles pequeños sumamos 120px porque Drive suele apilar sus botones */
+    padding-bottom: calc(56.25% + 120px);
+  }
+}
+
 .video-wrap iframe{
   position:absolute; top:0; left:0;
   width:100%; height:100%; border:0;
-  border-radius: 17px 17px 0 0;
 }
 .video-info{padding:1.5rem 1.25rem;}
 .video-info h2{margin:0 0 .5rem; font-size:1.4rem; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.75);}
