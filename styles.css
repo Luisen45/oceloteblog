@@ -175,11 +175,25 @@ body{
 .card .link{color:var(--warn); text-decoration:none; font-weight:600}
 
 /* Videos */
-.video-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:1rem}
-.video-grid iframe{
-  width:100%; aspect-ratio:16/9; border:0; border-radius:14px;
-  box-shadow:0 10px 24px rgba(0,0,0,.25);
+.video-list{
+  display:flex; flex-direction:column; gap:2.5rem;
+  max-width:850px; margin:2rem auto 0;
 }
+.video-item{
+  background:linear-gradient(180deg, rgba(8, 16, 28, 0.78), rgba(8, 16, 28, 0.62));
+  border:1px solid rgba(255,255,255,.14); border-radius:18px;
+  backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px);
+  box-shadow:0 14px 32px rgba(0,0,0,.35); overflow:hidden;
+}
+.video-wrap{
+  width:100%; aspect-ratio:16/9; background:#000;
+}
+.video-wrap iframe{
+  width:100%; height:100%; border:0; display:block;
+}
+.video-info{padding:1.5rem 1.25rem;}
+.video-info h2{margin:0 0 .5rem; font-size:1.4rem; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.75);}
+.video-info p{margin:0; color:#e9efff; line-height:1.6;}
 
 /* App de Estudio (se deja intacto para su página) */
 .study-app{margin-top:1rem}
@@ -237,7 +251,6 @@ body.juego{
 /* ========== RESPONSIVE ==========*/
 @media (max-width: 960px){
   .grid-3{grid-template-columns:1fr}
-  .video-grid{grid-template-columns:1fr}
   .flashcards{grid-template-columns:1fr}
 
   .nav-toggle{display:inline-block}
