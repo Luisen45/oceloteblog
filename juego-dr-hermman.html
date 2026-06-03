@@ -57,14 +57,13 @@
       grid-template-areas:
         "about about about about about about about about about about about about"
         "tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial tutorial"
-        "download download download download play play play play play play play play";
+        "download download download download download download download download download download download download";
       margin:1.1rem 0;
       align-items:start;
     }
     .grid-about{grid-area:about}
     .grid-tutorial{grid-area:tutorial}
     .grid-download{grid-area:download}
-    .grid-play{grid-area:play}
 
     /* Móvil / tablet */
     @media (max-width: 960px){
@@ -73,7 +72,6 @@
         grid-template-areas:
           "about"
           "tutorial"
-          "play"
           "download";
       }
     }
@@ -145,22 +143,6 @@
     }
     .btn-cta:hover{ transform:translateY(-2px); background:#5a47c7 }
 
-    /* ========================= PLAY CARD (canvas + controles) ========================= */
-    .play-card{ padding:1rem 1.1rem }
-    .canvas-wrap{
-      border-radius:14px; overflow:hidden;
-      border:1px solid rgba(255,255,255,.16);
-      background:rgba(0,0,0,.35);
-      box-shadow:0 14px 30px rgba(0,0,0,.35);
-    }
-    #drGame{ display:block; width:100%; height:auto; }
-
-    .controls{
-      display:flex; align-items:center; gap:.75rem; margin-top:.8rem; flex-wrap:wrap;
-    }
-    .controls .kbd{ padding:.1rem .35rem; border-radius:6px; background:rgba(255,255,255,.12); border:1px solid rgba(255,255,255,.18) }
-    .controls .hint{ color:#cfe0ff }
-
   </style>
 </head>
 
@@ -182,8 +164,8 @@
 
   <main class="section">
     <div class="container">
-      <h1>Dr Hermman</h1>
-      <p class="muted">Prototipo tipo “shooter” ligero para practicar reflejos. Flechas ← ↑ → ↓ para moverte y <kbd>Espacio</kbd> para disparar.</p>
+      <h1>Dr. Hermman</h1>
+      <p class="muted">¡Diviértete eliminando bacterias y usando el antibiótico correcto en este shooter retro de microbiología!</p>
 
       <!-- ========================= GRID PRINCIPAL ========================= -->
       <section class="game-grid">
@@ -193,10 +175,7 @@
           <p class="eyebrow">Sobre el juego</p>
           <h2>Acción rápida, ciencia con humor</h2>
           <p>
-            “Dr Hermman” es un minijuego hecho en Ocelote Comunidad. Pensado para partidas cortas:
-            <span class="muted-strong">mecánicas simples</span>, curva de dificultad progresiva y
-            puntajes para competir con amigos. Ideal para romper la rutina de estudio sin salir del
-            ecosistema Ocelote.
+            "Dr. Hermman" es un minijuego exclusivo para Android desarrollado por Ocelote Comunidad. Diseñado para partidas cortas y adictivas, enfrentarás a microorganismos con morfologías basadas en la vida real: desde bacterias alargadas y con cápsulas, hasta enemigos gigantes o diminutos y difíciles de impactar. Es la opción ideal para romper la rutina de estudio sin salir del ecosistema Ocelote.
           </p>
         </article>
 
@@ -204,43 +183,41 @@
         <section class="glass-card glass-strong tutorial-card grid-tutorial">
           <div class="tutorial-header">
             <p class="eyebrow">Tutorial</p>
-            <p class="lead">Mira el video y sigue las indicaciones para descargar, instalar y jugar.</p>
+            <p class="lead">Mira el video y sigue las indicaciones para descargar, instalar la APK y empezar a jugar.</p>
           </div>
 
           <div class="tutorial-body">
             <!-- Texto lateral -->
             <aside class="tutorial-side">
-              <h3>Cómo jugar</h3>
+              <h3>Cómo jugar (Pantalla en horizontal)</h3>
               <ul>
-                <li>Mover: <span class="kbd">←</span> <span class="kbd">↑</span> <span class="kbd">→</span> <span class="kbd">↓</span></li>
-                <li>Disparo: <span class="kbd">Espacio</span></li>
-                <li>Objetivo: esquiva y destruye para sumar puntos. Cada ola es más rápida.</li>
-                <li>Tip: prioriza sobrevivir; un combo largo vale más que ir “a lo loco”.</li>
+                <li><strong>Movimiento:</strong> Controla al jugador usando tu dedo en el lado izquierdo de la pantalla.</li>
+                <li><strong>Disparo:</strong> Dirige el ataque usando tu dedo en el lado derecho de la pantalla.</li>
+                <li><strong>Objetivo:</strong> Sobrevive a las oleadas eliminando microorganismos y recolectando los antibióticos (poderes) que aparecen aleatoriamente.</li>
+                <li><strong>Resistencia Bacteriana:</strong> Conforme avanzas de oleada, aparecerán más microorganismos en pantalla y estos se volverán cada vez más resistentes a los antibióticos. ¡Planifica tus ataques!</li>
               </ul>
               <p class="muted-strong">Requisitos:</p>
               <ul>
-                <li>Navegador moderno (Chromium/Firefox/Safari).</li>
-                <li>Si usas la versión APK/desktop, sigue el instalador del enlace de descarga.</li>
+                <li>Dispositivo móvil Android.</li>
               </ul>
             </aside>
 
             <!-- Video -->
             <div class="tutorial-video">
               <div class="video-wrap">
-                <!-- Reemplaza VIDEO_ID o usa link de Drive en preview -->
                 <iframe
-                  src="https://www.youtube.com/embed/VIDEO_ID"
+                  src="https://drive.google.com/file/d/1anAIDqMBHtgkconW-HKDs0IC9UAMAs37/preview"
                   title="Tutorial Dr Hermman"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  loading="lazy"
                   allowfullscreen
                 ></iframe>
               </div>
-              <p class="tutorial-caption">Instalación, controles y trucos para mejorar tu puntuación.</p>
+              <p class="tutorial-caption">Guía rápida de instalación y demostración de gameplay.</p>
             </div>
           </div>
         </section>
 
-        <!-- DOWNLOAD (4/12) -->
+        <!-- DOWNLOAD (12/12) -->
         <article class="glass-card glass-strong download-card grid-download">
           <div class="icon" aria-hidden="true">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -249,10 +226,18 @@
           </div>
           <div>
             <h3 class="title">Descarga</h3>
-            <p class="desc">APK / versión de escritorio y recursos del juego.</p>
-            <a class="btn-cta" href="https://drive.google.com/drive/folders/TU_CARPETA_HERMMAN" target="_blank" rel="noopener">
-              Abrir carpeta de Drive
-            </a>
+            <p class="desc">¡Descarga el juego desde aquí! Haz clic en el botón de abajo para acceder a Google Drive y empieza a jugar desde tu celular.</p>
+            <div style="margin-bottom: 1.25rem;">
+              <a class="btn-cta" href="https://drive.google.com/file/d/1Cs-ySt3dj6_9_vypL0nBGAM3WpkIZKRS/view?usp=sharing" target="_blank" rel="noopener">
+                Abrir enlace de Drive
+              </a>
+            </div>
+            <div class="warning-box" style="margin: 0; padding: 1rem;">
+              <strong>¿Problemas de instalación?</strong> Si tienes algún inconveniente, mándanos un correo directamente en nuestro buzón.
+              <div style="margin-top: 0.85rem;">
+                <a class="btn ghost" href="index.html#sugerencias" style="padding: 0.5rem 0.9rem; font-size: 0.9rem;">Ir al buzón de sugerencias</a>
+              </div>
+            </div>
           </div>
         </article>
       </section>
@@ -265,7 +250,7 @@
     </div>
   </footer>
 
-  <!-- Tu lógica del juego (usa los mismos IDs: #drGame, #startGame, #scoreBox) -->
+  <!-- Script global -->
   <script src="script.js" defer></script>
 </body>
 </html>

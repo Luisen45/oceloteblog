@@ -174,6 +174,20 @@ body{
 .card p{color:var(--muted); margin:0 0 .75rem}
 .card .link{color:var(--warn); text-decoration:none; font-weight:600}
 
+/* Alertas / Avisos */
+.warning-box {
+  background: rgba(255, 213, 79, 0.15); /* Fondo amarillo tenue */
+  border-left: 4px solid var(--warn); /* Borde lateral amarillo fuerte */
+  padding: 1rem 1.25rem;
+  border-radius: 4px 12px 12px 4px;
+  margin: 1.5rem 0 2.5rem;
+  font-size: 0.95rem;
+  color: #f1f4ff;
+}
+.warning-box strong {
+  color: var(--warn);
+}
+
 /* Videos */
 .video-list{
   display:flex; flex-direction:column; gap:2.5rem;

@@ -55,6 +55,21 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
   /* -------------------------------------------
+   * OceloteTV: cerrar advertencia
+   * ------------------------------------------- */
+  const closeWarningBtn = document.querySelector("[data-close-warning]");
+  if (closeWarningBtn) {
+    closeWarningBtn.addEventListener("click", () => {
+      // .closest() busca el ancestro más cercano que coincida con el selector
+      const warningBox = closeWarningBtn.closest(".warning-box");
+      if (warningBox) {
+        // Ocultamos la caja de advertencia
+        warningBox.style.display = "none";
+      }
+    });
+  }
+
+  /* -------------------------------------------
    * Flashcards simples (si existen en otra página)
    * ------------------------------------------- */
   document.querySelectorAll(".flashcard").forEach(card => {
@@ -233,118 +248,4 @@ document.addEventListener("DOMContentLoaded", () => {
 
     renderList(); pickCard();
   }
-
-  /* -------------------------------------------
-   * Dr Hermman (juego-dr-hermman.html)
-   * ------------------------------------------- */
-  const canvas = document.getElementById("drGame");
-  if (canvas && canvas.getContext) {
-    const ctx = canvas.getContext("2d");
-    const startBtn = document.getElementById("startGame");
-    const scoreBox = document.getElementById("scoreBox");
-
-    if (!canvas.width) canvas.width = 900;
-    if (!canvas.height) canvas.height = Math.round(900 * 9/16);
-
-    let W = canvas.width, H = canvas.height;
-    let running = false;
-    const keys = {};
-    const bullets = [];
-    const enemies = [];
-    const player = { x: W/2, y: H-50, r: 12, speed: 3 };
-    let lastShot = 0;
-    let lastSpawn = 0;
-    let score = 0;
-
-    window.addEventListener("keydown", e => { keys[e.key] = true; if(e.key===" ") e.preventDefault(); });
-    window.addEventListener("keyup",   e => { keys[e.key] = false; });
-
-    function shoot(t){
-      if (t - lastShot < 180) return; // ms
-      bullets.push({ x: player.x, y: player.y - player.r, dy: -6 });
-      lastShot = t;
-    }
-
-    function spawn(t){
-      if (t - lastSpawn < 900) return;
-      const x = 20 + Math.random()*(W-40);
-      const s = 1.2 + Math.random()*1.9;
-      enemies.push({ x, y: -20, r: 12, dy: s });
-      lastSpawn = t;
-    }
-
-    function step(t){
-      if (!running) return;
-
-      // mover
-      if (keys["ArrowLeft"])  player.x -= player.speed;
-      if (keys["ArrowRight"]) player.x += player.speed;
-      if (keys["ArrowUp"])    player.y -= player.speed;
-      if (keys["ArrowDown"])  player.y += player.speed;
-      if (keys[" "])          shoot(t);
-
-      player.x = Math.max(player.r, Math.min(W-player.r, player.x));
-      player.y = Math.max(player.r, Math.min(H-player.r, player.y));
-
-      bullets.forEach(b=> b.y += b.dy);
-      for (let i=bullets.length-1; i>=0; i--) if (bullets[i].y < -20) bullets.splice(i,1);
-
-      spawn(t);
-      enemies.forEach(e=> e.y += e.dy);
-
-      // colisiones
-      for (let i=enemies.length-1; i>=0; i--){
-        const e = enemies[i];
-        // golpe al jugador
-        const dxp = e.x - player.x, dyp = e.y - player.y;
-        if (dxp*dxp + dyp*dyp < (e.r+player.r)*(e.r+player.r)){
-          running = false;
-          if (scoreBox) scoreBox.textContent = `Puntos: ${score} · ¡Game Over!`;
-        }
-        // balas
-        for (let j=bullets.length-1; j>=0; j--){
-          const b = bullets[j];
-          const dxb = e.x - b.x, dyb = e.y - b.y;
-          if (dxb*dxb + dyb*dyb < (e.r+6)*(e.r+6)){
-            enemies.splice(i,1); bullets.splice(j,1); score++;
-            if (scoreBox) scoreBox.textContent = `Puntos: ${score}`;
-            break;
-          }
-        }
-        if (e.y > H+30) enemies.splice(i,1);
-      }
-
-      // dibujar
-      ctx.clearRect(0,0,W,H);
-      // jugador
-      ctx.fillStyle = "#6c5ce7";
-      ctx.beginPath(); ctx.arc(player.x, player.y, player.r, 0, Math.PI*2); ctx.fill();
-      // balas
-      ctx.fillStyle = "#ffd54f";
-      bullets.forEach(b=> { ctx.beginPath(); ctx.arc(b.x,b.y,4,0,Math.PI*2); ctx.fill(); });
-      // enemigos
-      ctx.fillStyle = "#ff8c00";
-      enemies.forEach(e=> { ctx.beginPath(); ctx.arc(e.x,e.y,e.r,0,Math.PI*2); ctx.fill(); });
-
-      requestAnimationFrame(step);
-    }
-
-    startBtn?.addEventListener("click", ()=>{
-      bullets.length = 0; enemies.length = 0; score = 0;
-      player.x = W/2; player.y = H-50; running = true;
-      if (scoreBox) scoreBox.textContent = "Puntos: 0";
-      requestAnimationFrame(step);
-    });
-
-    // Mantén lógica de tamaño simple; visual responsive por CSS
-    window.addEventListener("resize", () => {
-      W = canvas.width; H = canvas.height;
-    });
-  }
-
-  /* -------------------------------------------
-   * Footer: año actual
-   * ------------------------------------------- */
-  const year = document.getElementById("year");
-  if (year) year.textContent = new Date().getFullYear();
 });
