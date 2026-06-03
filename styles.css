@@ -184,6 +184,10 @@ body{
   border:1px solid rgba(255,255,255,.14); border-radius:18px;
   box-shadow:0 14px 32px rgba(0,0,0,.35);
   min-width: 0;
+  /* CORRECCIÓN PARA MÓVILES: */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
 }
 .video-wrap{
   position:relative;
@@ -196,8 +200,8 @@ body{
 
 @media (max-width: 960px) {
   .video-wrap {
-    /* Proporción matemática estándar para móviles. Evita botones encimados sin adivinar píxeles */
-    aspect-ratio: 4 / 3 !important;
+    /* CORRECCIÓN PARA MÓVILES: Forzar 16/9 para que los botones no se encimen */
+    aspect-ratio: 16 / 9 !important;
     height: auto !important;
     padding-bottom: 0 !important;
   }
@@ -205,7 +209,8 @@ body{
 
 .video-wrap iframe{
   position:absolute; top:0; left:0;
-  width:100%; height:100%; border:0;
+  width:100% !important; height:100% !important; border:0;
+  z-index: 1; /* CORRECCIÓN PARA MÓVILES: Mantiene la interfaz en 1 plano */
 }
 .video-info{padding:1.5rem 1.25rem;}
 .video-info h2{margin:0 0 .5rem; font-size:1.4rem; color:#fff; text-shadow:0 2px 12px rgba(0,0,0,.75);}
