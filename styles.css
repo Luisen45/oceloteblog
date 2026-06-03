@@ -194,19 +194,12 @@ body{
   overflow: hidden;
 }
 
-/* Ajuste de altura para reproductores de Google Drive en OceloteTV */
-.video-item .video-wrap {
-  /* Anulamos las proporciones simples */
-  aspect-ratio: auto;
-  height: 0;
-  /* 56.25% mantiene el video 16:9 exacto.
-     Los +85px absorben la altura fija de las barras negras de Drive en PC. */
-  padding-bottom: calc(56.25% + 85px);
-}
 @media (max-width: 960px) {
-  .video-item .video-wrap {
-    /* En móviles pequeños sumamos 120px porque Drive suele apilar sus botones */
-    padding-bottom: calc(56.25% + 120px);
+  .video-wrap {
+    /* Proporción matemática estándar para móviles. Evita botones encimados sin adivinar píxeles */
+    aspect-ratio: 4 / 3 !important;
+    height: auto !important;
+    padding-bottom: 0 !important;
   }
 }
 
