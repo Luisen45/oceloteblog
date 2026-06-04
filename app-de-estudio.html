@@ -206,24 +206,41 @@
                 3. Descarga e importa los paquetes de contenido a tu app y empieza a repasar.
               </p>
               <ul>
-                <li><strong>Requisitos:</strong> Dispositivo Android 8.0</li>
+                <li><strong>Requisitos:</strong> Dispositivo Android</li>
                 <li><strong>Soporte:</strong> En la carpeta de Drive siempre encontrarás la versión más actualizada disponible.</li>
               </ul>
             </aside>
-
-            <div class="tutorial-video">
-              <div class="video-wrap">
-                <!-- Reemplaza VIDEO_ID o usa link de Drive en preview -->
-                <iframe
-                  src="https://www.youtube.com/embed/VIDEO_ID"
-                  title="Tutorial OceloteApp"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowfullscreen
-                ></iframe>
+          <div class="tutorial-videos-container" style="min-width: 0;">
+            <div class="video-switcher" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+              <button type="button" class="btn primary" id="btnVideo1" style="padding: 0.5rem 0.9rem; font-size: 0.9rem; cursor: pointer;">Tutorial 1</button>
+              <button type="button" class="btn ghost" id="btnVideo2" style="padding: 0.5rem 0.9rem; font-size: 0.9rem; cursor: pointer;">Tutorial 2</button>
+            </div>
+            <div class="tutorial-videos">
+              <div class="tutorial-video" id="video1">
+                <div class="video-wrap">
+                  <iframe
+                    src="https://drive.google.com/file/d/1wq6N84flFsEVCXx_AIWMRkT6tuJYyole/preview"
+                    title="Tutorial 1 OceloteApp"
+                    loading="lazy"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <p class="tutorial-caption">Instalación, importación de paquetes y primeros pasos.</p>
               </div>
-              <p class="tutorial-caption">Instalación, importación de paquetes y primeros pasos.</p>
+              <div class="tutorial-video" id="video2" style="display: none;">
+                <div class="video-wrap">
+                  <iframe
+                    src="https://drive.google.com/file/d/1gV9dqr0q-RzdI1jEeN1c3HbNXDEaQe7r/preview"
+                    title="Tutorial 2 OceloteApp"
+                    loading="lazy"
+                    allowfullscreen
+                  ></iframe>
+                </div>
+                <p class="tutorial-caption">Descripción del segundo tutorial.</p>
+              </div>
             </div>
           </div>
+        </div>
         </section>
 
         <!-- DRIVE (fila 3, 12/12) -->
@@ -260,19 +277,7 @@
     </div>
   </footer>
 
-  <script>
-    // Año automático
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Toggle del menú móvil (si ya lo tienes en script.js, puedes quitar esto)
-    const navToggle = document.getElementById('navToggle');
-    const navMenu   = document.getElementById('navMenu');
-    if(navToggle && navMenu){
-      navToggle.addEventListener('click', ()=>{
-        const show = navMenu.classList.toggle('show');
-        navToggle.setAttribute('aria-expanded', show ? 'true' : 'false');
-      });
-    }
-  </script>
+  <!-- Script global -->
+  <script src="script.js" defer></script>
 </body>
 </html>

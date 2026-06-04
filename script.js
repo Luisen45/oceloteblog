@@ -1,6 +1,12 @@
 // script.js — coherente con tu index y sin romper OceloteApp ni Dr Hermman
 document.addEventListener("DOMContentLoaded", () => {
   /* -------------------------------------------
+   * AÑO ACTUAL EN FOOTER
+   * ------------------------------------------- */
+  const yearEl = document.getElementById("year");
+  if (yearEl) yearEl.textContent = new Date().getFullYear();
+
+  /* -------------------------------------------
    * NAV: toggle móvil + smooth scroll a anclas
    * ------------------------------------------- */
   const navToggle = document.getElementById("navToggle");
@@ -104,6 +110,27 @@ document.addEventListener("DOMContentLoaded", () => {
       }catch{ display.value = "Error"; }
     });
     clr && clr.addEventListener("click", () => display.value = "");
+  }
+
+  /* -------------------------------------------
+   * Video Switcher (OceloteApp)
+   * ------------------------------------------- */
+  const btnVideo1 = document.getElementById("btnVideo1");
+  const btnVideo2 = document.getElementById("btnVideo2");
+  const video1 = document.getElementById("video1");
+  const video2 = document.getElementById("video2");
+
+  if (btnVideo1 && btnVideo2 && video1 && video2) {
+    const switchVideo = (show1) => {
+      video1.style.display = show1 ? "block" : "none";
+      video2.style.display = show1 ? "none" : "block";
+      
+      btnVideo1.className = show1 ? "btn primary" : "btn ghost";
+      btnVideo2.className = show1 ? "btn ghost" : "btn primary";
+    };
+
+    btnVideo1.addEventListener("click", () => switchVideo(true));
+    btnVideo2.addEventListener("click", () => switchVideo(false));
   }
 
   /* -------------------------------------------
