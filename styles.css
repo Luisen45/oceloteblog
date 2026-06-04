@@ -11,7 +11,7 @@
 
 /* ========== BASE ==========*/
 *{box-sizing:border-box}
-html,body{min-height:100vh}
+html,body{min-height:100vh; scroll-behavior: smooth;}
 body{
   margin:0;
   font-family:"Poppins",system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;
