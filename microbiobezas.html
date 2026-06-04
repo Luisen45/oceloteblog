@@ -168,11 +168,26 @@
               <li>También puedes subir tus propias imágenes o editar los paquetes preconfigurados para adaptar tu estudio. Finalmente, puedes compartir tus paquetes con tus amigos y recibir los suyos.</li>
             </ul>
           </aside>
-          <div class="tutorial-video">
-            <div class="video-wrap">
-              <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tutorial Microbiobezas" allowfullscreen></iframe>
+        <div class="tutorial-videos-container" style="min-width: 0;">
+          <div class="video-switcher" style="display: flex; gap: 0.5rem; margin-bottom: 1rem; flex-wrap: wrap;">
+            <button type="button" class="btn primary" id="btnVideo1" style="padding: 0.5rem 0.9rem; font-size: 0.9rem; cursor: pointer;">Tutorial 1</button>
+            <button type="button" class="btn ghost" id="btnVideo2" style="padding: 0.5rem 0.9rem; font-size: 0.9rem; cursor: pointer;">Tutorial 2</button>
+          </div>
+          <div class="tutorial-videos">
+            <div class="tutorial-video" id="video1">
+              <div class="video-wrap">
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID" title="Tutorial Microbiobezas" loading="lazy" allowfullscreen></iframe>
+              </div>
+              <p class="tutorial-caption">Descarga y vista inicial del juego.</p>
             </div>
-            <p class="tutorial-caption">Descarga y vista inicial del juego.</p>
+            <div class="tutorial-video" id="video2" style="display: none;">
+              <div class="video-wrap">
+                <!-- Reemplaza "VIDEO_ID_2" por la URL de tu segundo video -->
+                <iframe src="https://www.youtube.com/embed/VIDEO_ID_2" title="Tutorial 2 Microbiobezas" loading="lazy" allowfullscreen></iframe>
+              </div>
+              <p class="tutorial-caption">Juego y edición de partidas.</p>
+            </div>
+          </div>
           </div>
         </div>
       </section>
